@@ -24,7 +24,7 @@
       \includegraphics[width=0.85\linewidth]{fig4_collapse}
       \caption{Collapse plot of normalised block capacity
         $\tilde{\Sigma}_n^{(c)}=\Sigma_n^{(c)}/C_c$ vs rescaled BFS depth $n/n^*$,
-        pooling sampled blocks at $q\in\{29,53\}$.
+        pooling sampled blocks at $q\in\{29,53,61\}$.
         The dashed line is the master law $(n/n^*)^{-4.5}$.
         Moderate alignment across primes and blocks supports mean universality
         of the decay exponent; residual spread reflects block-by-block
@@ -45,16 +45,16 @@
     \label{sec:variance}
 
     Figure~\ref{fig:variance} shows the normalised inter-block variance
-    $V_n = \mathrm{Var}_{c}(\Sigma_n^{(c)})/\bar{\Sigma}_n^2$ for $q\in\{53,61\}$.
+    $V_n = \mathrm{Var}_{c}(\Sigma_n^{(c)})/\bar{\Sigma}_n^2$ for $q\in\{29,53,61\}$.
 
     \begin{figure}[t]
       \centering
       \includegraphics[width=0.85\linewidth]{fig2_variance}
       \caption{Normalised inter-block variance ratio
         $V_n=\mathrm{Var}_{c}(\Sigma_n^{(c)})/\bar{\Sigma}_n^2$ as a function of BFS depth $n$
-        for $q\in\{53,61\}$.
+        for $q\in\{29,53,61\}$.
         The dashed horizontal line marks the threshold $\varepsilon_E=1$ of condition~(E2).
-        $V_n>1$ throughout the pre-saturation window at both primes, indicating
+        $V_n>1$ throughout the pre-saturation window at all three primes, indicating
         block-by-block heterogeneity; only mean universality of $\hat{\delta}_{\mathrm{exact}}$
         is established.}
       \label{fig:variance}
@@ -101,11 +101,11 @@
         $q$ & blocks & $[n_0,n_1]$ & $\hat{\delta}_{\mathrm{exact}}$ &
         $\sigma_{\mathrm{seed}}$ & $R^2$ & (E1$'$)(E2)(E3) \\
         \hline
-        29 & $50\times 3$ & $[2,5]$ & $4.83$ & $0.24$ & $>0.99$
+        29 & $50\times 3$ & $[2,5]$ & $4.37$ & $0.08$ & $>0.98$
         & $\checkmark\;\times\;\checkmark$ \\
-        53 & 20 & $[2,7]$ & $4.40$ & --- & $0.994$
+        53 & 20 & $[2,7]$ & $4.28$ & --- & $0.991$
         & $\checkmark\;\times\;\checkmark$ \\
-        61 & 15 & $[2,8]$ & $4.57$ & --- & $0.985$
+        61 & 15 & $[2,7]$ & $4.80$ & --- & $0.993$
         & $\checkmark\;\times\;\checkmark$ \\
         \hline
         O11 proxy ($q{=}307$) & 500 & $[10,27]$ & $3.39$ & --- & $0.987$
@@ -122,7 +122,7 @@
     variability ($\sigma_{\mathrm{seed}} = 0.24$ at $q=29$), and is stable across all tested primes.
     This rules out an interpretation of the gap as a numerical artefact of window choice
     or block sampling.
-    The non-monotone $q$-dependence ($4.83 \to 4.40 \to 4.57$) is within the
+    The non-monotone $q$-dependence ($4.37 \to 4.28 \to 4.80$) is within the
     inter-seed spread at $q=29$ ($\sigma_{\mathrm{seed}}=0.24$), leaving the
     trend ambiguous at the present prime range.
     The asymptotic value for $q\to\infty$ remains open (see Section~\ref{sec:discussion}).
@@ -132,7 +132,7 @@
 
     Figure~\ref{fig:collapse} shows the collapse of normalised capacity
     $\tilde{\Sigma}_n^{(c)} = \Sigma_n^{(c)}/C_c$ vs rescaled depth $n/n^*$.
-    The moderate alignment of the $q=29$ and $q=53$ curves around the master
+    The moderate alignment of the $q\in\{29,53,61\}$ curves around the master
     law $(n/n^*)^{-4.5}$ confirms mean universality; the inter-block spread
     is consistent with the E2 violation.
 
@@ -151,16 +151,16 @@
         \hline
         Perturbation                  & $\hat{\delta}_{\mathrm{exact}}$ & $\Delta\hat{\delta}$ \\
         \hline
-        Baseline                      & $4.40$                          & ---                  \\
-        $n_0\to 1$ (includes ramp-up) & $3.71$                          & $-0.70$              \\
-        $n_0\to 3$                    & $4.76$                          & $+0.36$              \\
-        $n_1\to 6$                    & $4.25$                          & $-0.15$              \\
-        $n_1\to 8$                    & $4.50$                          & $+0.10$              \\
+        Baseline                      & $4.28$                          & ---                  \\
+        $n_0\to 1$ (includes ramp-up) & $3.58$                          & $-0.70$              \\
+        $n_0\to 3$                    & $4.63$                          & $+0.35$              \\
+        $n_1\to 6$                    & $4.14$                          & $-0.14$              \\
+        $n_1\to 8$                    & $4.38$                          & $+0.10$              \\
         \hline
       \end{tabular}
     \end{table}
 
-    The exponent is stable to within $\pm 0.15$--$0.36$ for perturbations confined
+    The exponent is stable to within $\pm 0.15$--$0.35$ for perturbations confined
     to the decay regime ($n_0 \geq 2$).
     The dominant sensitivity is to $n_0=1$ ($\Delta\hat\delta = -0.70$): at $n=1$
     the block is still in the ramp-up phase and the power-law regime has not begun.
