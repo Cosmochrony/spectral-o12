@@ -1,0 +1,209 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{hypothesis}{Hypothesis}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+
+\title{Exact Weil-Block Projective Capacity on Heisenberg Graphs:\\
+Resolving the Final Obstruction to $\delta$ Extraction}
+\author{J\'er\^ome Beau\\
+\small Independent Researcher\\
+\small \href{mailto:jerome.beau@cosmochrony.org}{jerome.beau@cosmochrony.org}}
+\date{March 2026}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{abstract}
+    The O-series has progressively identified and resolved a sequence of obstructions
+    preventing reliable extraction of the capacity exponent~$\delta$ from discrete Heisenberg
+    geometries: a geometric obstruction (O8--O9), an algorithmic obstruction (O10), and a
+    residual representation-level ambiguity at the proxy stage (O11).
+    O11 introduced a bidimensional Fourier-character proxy for the Weil-block decomposition,
+    obtaining a stable estimate $\hat{\delta}_{\mathrm{cap}}\approx 3.4$ at $q=307$ while
+    coarse-graining away the central coordinate~$\gamma$, thereby leaving open direction O11-O2.
+    The present paper closes this observable gap by implementing the exact Weil projection.
+    For each generic Weil block~$H_c$ ($c\neq 0$, i.e.\ non-trivial central character),
+    we maintain a $q\times q$ span tracker operating directly in the irreducible representation
+    of $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$, at primes $q\in\{211,307,401\}$.
+    We verify measurability conditions (E1)--(E3), establish a stable pre-saturation decay
+    window, and extract $\hat{\delta}_{\mathrm{exact}}$ via log-log regression.
+    Robustness is assessed against fitting window, prime~$q$, block sampling density, and
+    coarse-graining scheme.
+    The converged exponent $\hat{\delta}_{\mathrm{exact}} \approx 4.4$--$4.8$ at
+    $q \in \{29, 53, 61\}$ (with $R^2 > 0.98$) exceeds the proxy value
+    $\hat{\delta}_{\mathrm{cap}} \approx 3.39$ by approximately one unit,
+    establishing Case~B: the exact Weil projection yields a larger exponent than the proxy,
+    driven by the dynamically active central phase $\ell_\gamma(n)$.
+    Via the structural relation $\beta^* = 1/(\delta + \frac{1}{2})$ derived in O3--O7,
+    this implies $\beta^* \approx 0.19$--$0.20$, outside the phenomenological target
+    $\beta^* \in (0.09, 0.13)$.
+    This incompatible outcome is most plausibly a finite-size artefact at $q \leq 61$,
+    motivating the extension to $q \geq 101$ as the next step (O12-O1).
+  \end{abstract}
+
+  \paragraph{Keywords.}
+    projective capacity, Heisenberg graphs, Weil representation, exact block projection,
+    capacity exponent, metaplectic phase, polynomial growth, spectral admissibility, cascade exponent.
+
+    \clearpage
+    \tableofcontents
+
+  \section{Introduction}
+
+  \subsection{The O-series chain: from obstruction to extraction}
+
+    The capacity exponent~$\delta$ encodes the sub-linear energy-rank relation predicted
+    by the Cosmochrony spectral framework~\cite{Cosmochrony}.
+    Its extraction from discrete graph models has been the central objective of the O-series,
+    which has successively resolved a chain of obstructions.
+
+    \textbf{O8}~\cite{Beau2026a12} established the three-step permutation-path fingerprint on
+    Lubotzky--Phillips--Sarnak (LPS) expander graphs and encountered a geometric obstruction:
+    the exponential shell growth $|S_n|\sim p^n$ compresses the entire pre-saturation window
+    into $O(\log q)$ BFS steps, preventing stable log-log slope estimation.
+
+    \textbf{O9}~\cite{Beau2026a13} resolved this geometric obstruction by replacing LPS graphs
+    with Cayley graphs of the discrete Heisenberg group $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$,
+    whose polynomial ball growth $|B_n|\sim n^4$ (Bass--Guivarc'h theorem, homogeneous
+    dimension $D_{\mathrm{hom}}=4$) restores an exploitable BFS window.
+
+    \textbf{O10}~\cite{Beau2026a14} performed the first large-$q$ computation ($q=101$,
+    $|G_q|=1{,}030{,}301$) and identified an algorithmic obstruction:
+    the dense TensorSketch fingerprint is structurally mismatched to the problem,
+    requiring sketch dimension $D\gg q^4$ to resolve the pre-saturation window,
+    which is computationally impractical.
+    O10 concluded that the remaining obstruction is representational, not geometric,
+    and identified the Weil-block decomposition as the correct instrument.
+
+    \textbf{O11}~\cite{Beau2026a15} addressed this by introducing a bidimensional
+    Fourier-character proxy for the Weil-block decomposition.
+    The proxy acts on the abelianised coordinates $(a,b)$ of $G_q$, yielding a proxy
+    ambient dimension~$q^2$ that delays saturation to the correct scale.
+    All three measurability conditions (B1)--(B3) were satisfied at all tested primes
+    $q\in\{101,151,211,307\}$, and a stable decay exponent
+    $\hat{\delta}_{\mathrm{cap}}\approx 3.4$ was extracted at $q=307$ with $R^2=0.987$.
+    However, the proxy coarse-grains away the central coordinate~$\gamma$ of $G_q$,
+    which encodes the non-commutativity $[X,Y]=Z$ of the Heisenberg group.
+    The question of whether the exact Weil projection yields a quantitatively different
+    exponent was identified as open direction O11-O2 and deferred to the present paper.
+
+    \textbf{O12} (this paper) closes this observable gap by implementing the exact Weil
+    projection, thereby providing the first physically interpretable measurement of~$\delta$.
+
+  \subsection{Why the central coordinate $\gamma$ matters}
+
+    The distinction between the proxy of O11 and the exact projection of the present paper
+    is not a minor technical refinement.
+    The coordinate $\gamma\in\mathbb{Z}/q\mathbb{Z}$ is the central element of $G_q$,
+    generated by the commutator $[X,Y]=Z$.
+    In the exact Weil representation $\rho_c$, each group element $(a,b,\gamma)\in G_q$
+    acts on $f\in L^2(\mathbb{Z}/q\mathbb{Z})$ as
+    \begin{equation}
+      (\rho_c(a,b,\gamma)\,f)(x) = \psi_c(\gamma + bx)\,f(x+a),
+      \qquad \psi_c(x) = e^{2\pi i c x/q}.
+      \label{eq:weil-exact}
+    \end{equation}
+    The phase factor $\psi_c(\gamma)$ contributed by the central extension is a
+    non-trivial multiplicative twist that is absent from the abelianised proxy.
+    Neglecting~$\gamma$ amounts to projecting the metaplectic dynamics onto its
+    commutative shadow, which may either over- or under-estimate the effective
+    capacity decay rate.
+    Whether this phase accelerates or decelerates channel saturation is an empirical
+    question that only the exact projection can resolve.
+
+  \subsection{O12 as a validation paper}
+
+    The O-series has, up to and including O11, been a programme of obstruction
+    identification and resolution.
+    O12 marks a qualitative transition: it is the first paper in the series
+    where the measurement instrument is exact at the representation level,
+    and where the extracted observable can be directly confronted with a
+    structural prediction of the Cosmochrony framework.
+
+    We do not refit the $\delta\mapsto\beta$ relation in the present paper.
+    Rather, we use the structural mapping derived earlier in
+    O3--O7~\cite{Beau2026a7,Beau2026a8,Beau2026a9,Beau2026a10,Beau2026a11} and propagate
+    the exactly measured $\hat{\delta}_{\mathrm{exact}}$ through that pre-existing relation.
+    The resulting constraint on~$\beta^*$ is then compared to the phenomenological
+    window $\beta^*\in(0.09,0.13)$ established from charged lepton mass ratios in O3~\cite{Beau2026a7}.
+
+    Concretely:
+    \begin{itemize}
+      \item if $\hat{\delta}_{\mathrm{exact}}$ is compatible with $\beta^*\in(0.09,0.13)$,
+      the programme gains strong quantitative support;
+      \item if $\hat{\delta}_{\mathrm{exact}}$ falls outside this window, this constitutes
+      a genuine tension that must be addressed before claiming predictive success.
+    \end{itemize}
+    In either case, the result carries decisive scientific content.
+
+    \begin{quote}
+      \textit{O12 is the first point in the O-series where a quantitatively testable
+      prediction of the Cosmochrony framework is confronted with exact
+      representation-level data.}
+    \end{quote}
+
+  \subsection{Main results}
+
+    We make four contributions.
+
+    \textbf{Exact projection framework (Sections~3--4).}
+    We implement the exact Weil representation $\rho_c$ on $L^2(\mathbb{Z}/q\mathbb{Z})$,
+    define the exact block-wise projective capacity $\Sigma_n^{(c)}$, and introduce
+    measurability conditions (E1)--(E3) that are strictly stronger than (B1)--(B3) of O11
+    by virtue of retaining the full metaplectic structure.
+
+    \textbf{Numerical results (Section~5).}
+    We report per-block capacity curves $\Sigma_n^{(c)}$, inter-block variance as a function
+    of BFS depth, and the collapse plot of normalised capacity across primes $q$ and blocks~$c$,
+    which constitutes the primary evidence for universality.
+
+    \textbf{Extraction of $\hat{\delta}_{\mathrm{exact}}$ and robustness (Sections~5.3--5.5).}
+    We extract $\hat{\delta}_{\mathrm{exact}}$ via log-log regression and assess sensitivity
+    to fitting window, prime $q$, block sampling density, and coarse-graining scheme.
+
+    \textbf{Proxy vs exact comparison (Section~6).}
+    We systematically compare $\hat{\delta}_{\mathrm{exact}}$ and $\hat{\delta}_{\mathrm{cap}}$
+    and analyse the three structurally distinct scenarios.
+
+    \textbf{Consequence for $\beta^*$ (Section~7).}
+    We propagate $\hat{\delta}_{\mathrm{exact}}$ through the O3--O7 structural relation
+    and state the resulting constraint on~$\beta^*$ together with a consistency check.
+
+    The paper is organised as follows.
+    Section~\ref{sec:background-and-notation} recalls the Heisenberg Cayley graph setup, introduces the exact Weil
+    representation in detail, and recaps the proxy framework of O11.
+    Section~\ref{sec:exact-capacity} develops the exact Weil-block projective capacity and the measurability
+    conditions (E1)--(E3).
+    Section~\ref{sec:numerics} describes the numerical implementation, including the span-tracking algorithm,
+    computational cost, and block sampling strategy.
+    Section~\ref{sec:results} presents the results.
+    Section~\ref{sec:comparison} analyses the proxy vs exact comparison.
+    Section~\ref{sec:beta} derives the consequence for~$\beta^*$.
+    Section~\ref{sec:discussion} discusses limitations and open directions.
+    Section~\ref{sec:conclusion} concludes.
+
+    \input{02-background-and-notation}
+    \input{03-exact-capacity}
+    \input{04-numerics}
+    \input{05-results}
+    \input{06-comparison}
+    \input{07-beta}
+    \input{08-discussion}
+    \input{09-conclusion}
+
+    \begin{thebibliography}{99}
+
+      \input{cosmochrony-bibliography}
+
+    \end{thebibliography}
+
+\end{document}

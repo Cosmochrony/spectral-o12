@@ -1,0 +1,60 @@
+\section{Conclusion}
+  \label{sec:conclusion}
+
+  The O-series has now traversed the full chain from obstruction identification
+  to exact measurement.
+  O8 identified the geometric obstruction on LPS graphs;
+  O9 resolved it via polynomial-growth Heisenberg graphs;
+  O10 identified the algorithmic obstruction in the dense TensorSketch;
+  O11 lifted this obstruction via the bidimensional Fourier-character proxy,
+  obtaining $\hat{\delta}_{\mathrm{cap}} \approx 3.39$;
+  O12 closes the final gap by implementing the exact Weil projection.
+
+  The central result of this paper is the measurement
+  \begin{equation}
+    \hat{\delta}_{\mathrm{exact}} \approx 4.4\text{--}4.8
+    \qquad (q \in \{29,53,61\},\; R^2 > 0.98),
+    \label{eq:conclusion}
+  \end{equation}
+  establishing that the exact Weil projection yields a significantly larger capacity
+  exponent than the proxy: $\hat{\delta}_{\mathrm{exact}} > \hat{\delta}_{\mathrm{cap}}$
+  by approximately one unit.
+  This confirms Case B of Section~\ref{sec:comparison}.
+  The mechanism is identified via the coherence length $\ell_\gamma(n)$: the central
+  coordinate $\gamma$ of $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$ is dynamically
+  active throughout the fitting window, and its phase structure accelerates the
+  saturation of individual Weil blocks relative to the abelianised proxy.
+
+  The result carries both a positive and a cautionary message.
+  On the positive side, a measurable and structurally interpretable power-law
+  decay of $\bar{\Sigma}_n$ is confirmed in the exact representation, with $R^2 > 0.98$
+  across all tested primes.
+  The decay exponent is stable within the window $[n_0, n_1]$ and robust to
+  block sampling (within $\pm 0.3$ for the baseline window, up to $\pm 0.7$ if
+  the ramp-up shell $n=1$ is incorrectly included).
+  On the cautionary side, the accessible prime range ($q \leq 61$) is far from the
+  asymptotic regime, the fitting windows contain only 4--7 data points, and the
+  $q$-convergence of $\hat{\delta}_{\mathrm{exact}}$ is not yet established.
+  The asymptotic value of $\delta_{\mathrm{exact}}$ for $q \to \infty$ remains open.
+
+  The consequence for the cascade exponent $\beta^*$ is now quantified.
+  Via the structural relation $\beta^* = 1/(\delta + \frac{1}{2})$ derived in O7~\cite{Beau2026a11},
+  the range $\hat{\delta}_{\mathrm{exact}} \approx 4.4$--$4.8$ implies
+  $\beta^* \approx 0.19$--$0.20$, which lies outside the phenomenological
+  target $\beta^* \in (0.09, 0.13)$ from charged lepton mass ratios (O3~\cite{Beau2026a7}).
+  This is an incompatible outcome in the sense of Section~\ref{sec:beta}.
+  The most natural resolution is that the accessible primes ($q \leq 61$) are
+  too small for asymptotic convergence: the proxy series showed a drift of
+  $\hat{\delta}_{\mathrm{cap}}$ from $5.78$ at $q=101$ to $3.39$ at $q=307$,
+  and the exact series may exhibit a large upward drift at $q \geq 211$.
+  Establishing whether this is the case is the central objective of O12-O1.
+
+  O12 is the first point in the O-series where the Cosmochrony framework
+  is confronted with exact representation-level data.
+  The resulting discrepancy with the proxy-level prediction does not
+  invalidate the programme, but sharpens it:
+  it identifies the central coordinate $\gamma$ as a dynamically active
+  component and shifts the quantitative target for the cascade exponent.
+  The resolution of this tension now depends on extending the computation
+  to larger primes and, if necessary, refining the structural relation between
+  $\delta$ and $\beta^*$ in the exact-block setting.

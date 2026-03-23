@@ -1,0 +1,95 @@
+\section{Proxy vs Exact: Three Scenarios}
+  \label{sec:comparison}
+
+  The comparison between $\hat{\delta}_{\mathrm{exact}}$ and the proxy value
+  $\hat{\delta}_{\mathrm{cap}}\approx 3.4$ from O11~\cite{Beau2026a15} admits three
+  qualitatively distinct outcomes, each with a different structural interpretation.
+  We analyse them in turn, then identify the structural mechanism that would explain
+  the discrepancy or agreement in each case.
+
+  \subsection{Case A: $\hat{\delta}_{\mathrm{exact}}\approx\hat{\delta}_{\mathrm{cap}}$}
+
+    If the exact and proxy exponents agree to within the uncertainty bands reported in
+    Table~\ref{tab:sensitivity}, the central coordinate $\gamma$ is dynamically
+    negligible at the asymptotic scale probed by these primes.
+    The interpretation is that the capacity decay is governed by the translational and
+    phase structure encoded in the $(a,b)$-coordinates alone, and the metaplectic
+    twist $\psi_c(\gamma)$ averages out across BFS shells without affecting the
+    leading-order rate.
+
+    This outcome would retroactively validate O11: the proxy observable is a faithful
+    instrument for $\delta$, and the result $\hat{\delta}_{\mathrm{cap}}\approx 3.4$
+    already constitutes the first reliable measurement.
+    It would also suggest that the asymptotic regime is already well-established at $q=307$
+    and that the proxy-level underestimate identified in O10 was of algorithmic rather
+    than structural origin.
+
+  \subsection{Case B: $\hat{\delta}_{\mathrm{exact}}>\hat{\delta}_{\mathrm{cap}}$}
+
+    If the exact exponent exceeds the proxy value, the central coordinate $\gamma$
+    accelerates the capacity decay.
+    The mechanism is the following.
+    In the exact projection, the phase $\psi_c(\gamma+bx)$ introduces coherent
+    interference between path contributions from different shells: paths that land
+    on group elements with different $\gamma$-coordinates but the same $(a,b)$-projection
+    are now distinguishable in $H_c$, contributing genuinely new directions to the span.
+    This increases the incremental rank $\Delta r_n^{(c)}$ at early depths (when
+    $\gamma$-diversity is high), which raises $\Sigma_n^{(c)}$ at small $n$, but
+    the span saturates faster because the effective ambient dimension is $q$ rather than
+    $q^2$ — leading to a steeper decay at intermediate depths.
+
+    This outcome implies that O11 systematically underestimated $\delta$, and that the
+    phenomenological window for $\beta^*$ must be recomputed using $\hat{\delta}_{\mathrm{exact}}$
+    as input to the O3--O7 structural relation.
+
+  \subsection{Case C: $\hat{\delta}_{\mathrm{exact}}<\hat{\delta}_{\mathrm{cap}}$}
+
+    If the exact exponent falls below the proxy value, the central coordinate $\gamma$
+    decelerates the capacity decay.
+    The mechanism here is the opposite of Case B: the metaplectic phase $\psi_c(\gamma+bx)$
+    introduces destructive interference between path contributions, reducing the
+    effective incremental rank at each shell.
+    This would mean that paths which the proxy counted as independent are in fact
+    correlated in the exact representation via the central extension, so the span
+    grows more slowly and $\delta$ is smaller.
+
+    This outcome does not invalidate the programme but imposes a downward revision of
+    $\hat{\delta}$ and a corresponding widening of the constraint on $\beta^*$.
+    It would also raise a deeper question: whether the slower decay reflects a genuine
+    property of the physical dynamics or an artefact of insufficient $q$ (i.e.\ the
+    asymptotic regime not yet reached).
+    The convergence of $\hat{\delta}_{\mathrm{exact}}$ with $q$ in Table~\ref{tab:delta}
+    is the primary diagnostic for distinguishing these two interpretations.
+
+  \subsection{Structural explanation via the metaplectic phase}
+    \label{sec:structural-explanation}
+
+    All three cases can be understood through a single structural parameter: the
+    effective coherence length $\ell_\gamma$ of the central phase across a BFS shell.
+    Formally, define
+    \begin{equation}
+      \ell_\gamma(n) = \left|\frac{1}{|S_n|}\sum_{g\in S_n}
+                         e^{2\pi i c\,\gamma_g/q}\right|,
+      \label{eq:coherence}
+    \end{equation}
+    where $\gamma_g$ is the central coordinate of $g\in S_n$.
+    If $\ell_\gamma(n)\approx 1$ (high coherence), the central phase acts as a nearly
+    constant multiplicative factor and the dynamics reduces to the proxy case (Case A).
+    If $\ell_\gamma(n)\ll 1$ (low coherence, $\gamma_g$ uniformly distributed), the central
+    phase randomises path contributions and modifies $\delta$ in either direction
+    depending on whether the randomisation enriches or impoverishes the span.
+
+    The regime of $\ell_\gamma$ as a function of $n$ can be extracted from the numerical
+    data as a byproduct of the span-tracking algorithm, providing an independent diagnostic
+    of the mechanism responsible for the observed discrepancy or agreement.
+
+  \subsection{Dependence on $q$: proxy artefact or asymptotic convergence?}
+
+    A fourth scenario is possible: $\hat{\delta}_{\mathrm{exact}}$ may depend on $q$ at
+    the primes tested, with convergence occurring only at $q\gg 401$.
+    If the exponents at $q\in\{211,307,401\}$ differ by more than $\sigma_{\mathrm{seed}}$
+    without forming a clear limit, neither Case A, B, nor C applies cleanly.
+    This scenario is identified in advance so that Table~\ref{tab:delta} can be read with
+    it in mind: a monotone trend in $\hat{\delta}_{\mathrm{exact}}$ with $q$ that has not
+    yet flattened would be evidence for an asymptotic artefact rather than a structural
+    effect of $\gamma$.

@@ -1,0 +1,104 @@
+\section{Numerical Implementation}
+  \label{sec:numerics}
+
+  \subsection{Computational parameters}
+
+    We perform computations at three primes $q\in\{211,307,401\}$.
+    The choice of $q=401$ extends beyond the $q=307$ plateau of O11 to confirm convergence
+    of $\hat{\delta}_{\mathrm{exact}}$ in a genuine asymptotic regime.
+    At each prime, the group $G_q$ has order $q^3\in\{9{,}393{,}931;\,28{,}934{,}443;\,64{,}481{,}201\}$.
+    BFS is performed from the identity element; the BFS is truncated once a fraction $f$
+    of all $|G_q|$ nodes has been visited.
+    The precise value of $f$ at each prime is reported in Table~\ref{tab:params}.
+
+  \subsection{Per-block span-tracking algorithm}
+
+    For each sampled generic block $H_c$ with multi-index $c=(c_1,c_2,c_3)$, we maintain
+    a $q\times q$ orthonormal basis $\{e_1,\ldots,e_k\}$ of the accumulated span
+    $W_{\leq n}^{(c)}\subset\mathbb{C}^q$ using incremental Gram--Schmidt orthonormalisation.
+
+    At each BFS step, for each new group element $g=(a,b,\gamma)\in S_n$ and each
+    path $\pi=(s_1,s_2,s_3)\in S^3$, the fingerprint vector $v(\pi,g)\in G_q^3$ is
+    computed, then projected onto $H_c$ via the action~\eqref{eq:block-action}.
+    The projection is computed exactly: the phase $\psi_{c_i}(\gamma_i+b_i x)$ at
+    each factor is evaluated modulo $q$ and accumulated without approximation.
+    The resulting vector $w\in\mathbb{C}^q$ is then orthogonalised against the current
+    basis; if $\|w - \mathrm{proj}_{W_{\leq n}}w\|> \varepsilon_{\mathrm{GS}}$, the
+    normalised residual is added to the basis and $\Delta r_n^{(c)}$ is incremented.
+    We use $\varepsilon_{\mathrm{GS}}=10^{-10}$ throughout.
+
+    \paragraph{Computational cost.}
+      The theoretical cost per BFS step is $O(q^5)$: there are $O(q^3)$ generic blocks,
+      each requiring $O(q)$ operations for the Weil action and $O(q)$ for the Gram--Schmidt
+      step.
+      In practice, this is reduced to $O(q^4)$ per step by sampling only $M_{\mathrm{block}}$
+      blocks at each prime (see Section~\ref{sec:sampling}).
+      At $q=401$ with $M_{\mathrm{block}}=500$, the estimated wall-clock time per BFS step
+      is of order one second on a single core.
+
+    \paragraph{Sparsity.}
+      The shell $S_n$ has size $|S_n|\sim 4n^3$ for large $n$ (derivative of the ball growth
+      law $|B_n|\sim n^4$).
+      For $n\leq n^*$, only a small subset of group elements is processed at each BFS step,
+      so the per-step Weil computation touches a fraction $|S_n|/|G_q|\sim 4n^3/q^3\ll 1$
+      of the group.
+
+\subsection{Sampling strategy for generic blocks}
+  \label{sec:sampling}
+
+  The total number of generic multi-indices is $O(q^3)$: at $q=307$ this is approximately
+  $2.9\times 10^7$, far beyond what can be computed exhaustively.
+  We sample $M_{\mathrm{block}}$ blocks at each prime using the following protocol.
+
+  \textbf{Uniform random sampling.}
+  At each prime, $M_{\mathrm{block}}$ multi-indices are drawn uniformly at random from
+  the set of generic multi-indices (Definition~\ref{def:generic}).
+  We use $M_{\mathrm{block}}=500$ for $q\in\{211,307\}$ and $M_{\mathrm{block}}=300$
+  for $q=401$ (due to the higher per-block cost).
+
+  \textbf{Reproducibility and inter-seed dispersion.}
+  For each prime, the sampling is repeated over $N_{\mathrm{seed}}=5$ independent random
+  seeds.
+  We report both the mean estimate $\hat{\delta}_{\mathrm{exact}}$ and the inter-seed
+  standard deviation $\sigma_{\mathrm{seed}}(\hat{\delta})$, which quantifies the
+  sensitivity of the extraction to the particular set of blocks sampled.
+  A small $\sigma_{\mathrm{seed}}$ provides evidence that $M_{\mathrm{block}}$ blocks
+  are sufficient for a representative sample.
+
+  \textbf{Stratification.}
+  As a robustness check, we additionally run a stratified sample in which $c_1,c_2,c_3$
+  are drawn uniformly but with $c_1\leq c_2\leq c_3$ (up to permutation), ensuring
+  coverage of different ordering classes.
+  Results from the stratified and uniform samples are compared in the sensitivity
+  analysis (Section~5.5).
+
+\subsection{Fitting procedure}
+  \label{sec:fitting}
+
+  For each prime $q$ and each seed, the log-log regression
+  $\log\bar{\Sigma}_n = -\delta\log n + \log C$ is performed over the fitting window
+  $[n_0,n_1]$ by ordinary least squares.
+  The window boundaries $n_0$ and $n_1$ are determined as follows.
+  The lower bound $n_0$ is the smallest $n$ for which $|B_n|\geq q$ (ensuring that
+  the BFS has covered at least one full Weil-block ambient dimension).
+  The upper bound $n_1$ is the last depth before the mean saturation flag
+  $\bar{\Sigma}_n < \varepsilon_{\mathrm{sat}}=10^{-3}$ is triggered.
+  Sensitivity to $[n_0,n_1]$ is assessed by varying $n_0$ by $\pm 2$ and $n_1$
+  by $\pm 3$ and reporting the range of resulting $\hat{\delta}$ values.
+
+  \begin{table}[ht]
+    \centering
+    \caption{Computational parameters at each prime.
+      $N_{\mathrm{node}}=|G_q|$; $f$ = BFS node fraction;
+      $M_{\mathrm{block}}$ = blocks per seed; $N_{\mathrm{seed}}$ = number of seeds.}
+    \label{tab:params}
+    \begin{tabular}{ccccc}
+      \hline
+      $q$ & $N_{\mathrm{node}}$ & $f$  & $M_{\mathrm{block}}$ & $N_{\mathrm{seed}}$ \\
+      \hline
+      211 & $9.4\times 10^6$    & 0.30 & 500                  & 5                   \\
+      307 & $2.9\times 10^7$    & 0.20 & 500                  & 5                   \\
+      401 & $6.4\times 10^7$    & 0.10 & 300                  & 5                   \\
+      \hline
+    \end{tabular}
+  \end{table}

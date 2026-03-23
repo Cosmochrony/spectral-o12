@@ -1,0 +1,174 @@
+\section{Exact Weil-Block Projective Capacity}
+  \label{sec:exact-capacity}
+
+  \subsection{Exact block decomposition}
+
+    The three-fold tensor product $\rho_{\mathrm{aff}}^{\otimes 3}$ decomposes into $q^3$
+    irreducible blocks $H_{c_1,c_2,c_3}$, each of dimension $q$ (for generic multi-indices)
+    or smaller (for degenerate multi-indices).
+    We restrict attention to generic blocks in the sense of Definition~\ref{def:generic}.
+    For a generic block $H_c$ with multi-index $c=(c_1,c_2,c_3)$, the group action is
+    \begin{equation}
+      \rho_c(g_1,g_2,g_3) = \rho_{c_1}(g_1)\otimes\rho_{c_2}(g_2)\otimes\rho_{c_3}(g_3),
+      \quad g_i=(a_i,b_i,\gamma_i)\in G_q,
+      \label{eq:block-action}
+    \end{equation}
+    where each factor $\rho_{c_i}$ is the exact Weil representation of~\eqref{eq:weil-exact}.
+    The ambient space of $H_c$ is $L^2(\mathbb{Z}/q\mathbb{Z})^{\otimes 3}$, of dimension~$q^3$,
+    but the image of the block map~\eqref{eq:block-action} lives in a $q$-dimensional
+    irreducible subspace (see Proposition~\ref{prop:block-dim} below).
+
+    \begin{proposition}[Block dimension]
+      \label{prop:block-dim}
+      For a generic multi-index $c=(c_1,c_2,c_3)$, the irreducible block $H_c$ has dimension~$q$.
+    \end{proposition}
+
+    \begin{proof}
+      Each $\rho_{c_i}$ is an irreducible $q$-dimensional representation of $G_q$
+      (the Weil representation at central character $c_i\neq 0$).
+      By the Stone--von Neumann theorem for finite Heisenberg groups, every irreducible
+      representation of $G_q$ at a fixed non-trivial central character $c\neq 0$ is
+      equivalent to $\rho_c$ and has dimension~$q$.
+      The tensor product $\rho_{c_1}\otimes\rho_{c_2}\otimes\rho_{c_3}$ decomposes, for
+      generic $(c_1,c_2,c_3)$ with $c_1+c_2+c_3\not\equiv 0\pmod{q}$, as a sum of $q^2$
+      copies of the irreducible representation $\rho_{c_1+c_2+c_3}$, each of dimension~$q$.
+      Hence each constituent block $H_c$ has dimension~$q$.
+    \end{proof}
+
+  \subsection{Incremental block capacity: definition}
+
+    Fix a generic block $H_c$.
+    For each BFS shell $S_n = B_n\setminus B_{n-1}$ of $\mathrm{Cay}(G_q,S)$, let
+    $F_n^{(c)}\subset H_c$ denote the set of projected fingerprint vectors
+    \begin{equation}
+      F_n^{(c)}
+      = \bigl\{\,\Pi_c\bigl(v(\pi,g)\bigr) : g\in S_n,\;\pi\in S^3\,\bigr\},
+    \end{equation}
+    where $v(\pi,g)=(g s_1,\,g s_1 s_2,\,g s_1 s_2 s_3)\in G_q^3$ is the endpoint triple of
+    path $\pi=(s_1,s_2,s_3)$ starting at~$g$, and $\Pi_c: L^2(G_q^3)\to H_c$ is the
+    orthogonal projection onto the block~$H_c$ via~\eqref{eq:block-action}.
+    Define the subspaces
+    \begin{equation}
+      W_{<n}^{(c)} = \mathrm{span}\bigl(F_0^{(c)}\cup\cdots\cup F_{n-1}^{(c)}\bigr),
+      \qquad
+      W_{\leq n}^{(c)} = \mathrm{span}\bigl(F_0^{(c)}\cup\cdots\cup F_n^{(c)}\bigr).
+    \end{equation}
+    The \emph{incremental rank contribution} of shell $S_n$ in block $H_c$ is
+    \begin{equation}
+      \Delta r_n^{(c)} = \dim W_{\leq n}^{(c)} - \dim W_{<n}^{(c)},
+    \end{equation}
+    and the \emph{exact block-wise projective capacity} is
+    \begin{equation}
+      \Sigma_n^{(c)} = \frac{\Delta r_n^{(c)}}{|S_n|}.
+      \label{eq:exact-cap}
+    \end{equation}
+    Since $\Delta r_n^{(c)}\leq\min(\dim H_c, |S_n|)\leq\min(q, |S_n|)$, we have
+    $\Sigma_n^{(c)}\in[0,1]$ whenever $|S_n|\geq 1$.
+    The pre-saturation regime is the range of depths $n$ for which $\Sigma_n^{(c)}$ is still
+    positive and decaying: the block $H_c$ is saturated at depth $n^*$ defined by
+    $\dim W_{\leq n^*}^{(c)}=q$.
+
+  \subsection{Mean capacity and the decay hypothesis}
+
+    Let $\mathcal{C}_{\mathrm{gen}}$ denote the set of sampled generic multi-indices
+    used in the numerical experiment (see Section~\ref{sec:sampling} for the sampling protocol).
+    The \emph{mean block capacity} is
+    \begin{equation}
+      \bar{\Sigma}_n = \frac{1}{|\mathcal{C}_{\mathrm{gen}}|}
+      \sum_{c\in\mathcal{C}_{\mathrm{gen}}} \Sigma_n^{(c)}.
+    \end{equation}
+    In the proxy framework of O11~\cite{Beau2026a15}, the mean capacity over generic channels
+    satisfies $\bar{\Sigma}_n\sim C\,n^{-\hat{\delta}_{\mathrm{cap}}}$ with
+    $\hat{\delta}_{\mathrm{cap}}\approx 3.4$.
+    The exact analogue for the full Weil representation is:
+
+    \begin{hypothesis}[Block decay law]
+      \label{hyp:decay}
+      There exists an exponent $\delta_{\mathrm{exact}}>0$ and constants $C_c>0$ such that
+      for all generic blocks $H_c\in\mathcal{C}_{\mathrm{gen}}$,
+      \begin{equation}
+        \Sigma_n^{(c)} \sim C_c\,n^{-\delta_{\mathrm{exact}}}
+        \qquad (n_0\leq n\leq n_1),
+        \label{eq:decay-law}
+      \end{equation}
+      with a common exponent $\delta_{\mathrm{exact}}$ across all generic blocks
+      (but block-dependent amplitudes $C_c$).
+    \end{hypothesis}
+
+    The universality of the exponent across blocks is motivated by the fact that the Weil
+    blocks diagonalise the affine action of $G_q$: each generic block sees the same
+    structural constraints from the BFS exploration, so a common dynamical rate is expected.
+    This is however an empirical statement that the present paper tests.
+
+  \subsection{Measurability conditions (E1)--(E3)}
+
+    The following conditions, stricter analogues of (B1)--(B3) from O11~\cite{Beau2026a15},
+    must all hold for the extraction of $\hat{\delta}_{\mathrm{exact}}$ to be considered reliable.
+
+    \begin{definition}[Measurability conditions]
+      \label{def:conditions}
+      Let $[n_0,n_1]\subset[1,n^*]$ be the fitting window.
+      \begin{itemize}
+        \item[\textbf{(E1)}] \textbf{Window depth.}
+        The pre-saturation window contains at least 15 data points: $n_1 - n_0 \geq 14$.
+        \item[\textbf{(E2)}] \textbf{Inter-block homogeneity.}
+        The inter-block variance of the capacity is small relative to the mean squared capacity
+        throughout the fitting window:
+        \begin{equation}
+          \frac{\mathrm{Var}_{c\in\mathcal{C}_{\mathrm{gen}}}(\Sigma_n^{(c)})}{\bar{\Sigma}_n^2}
+          < \varepsilon_E
+          \qquad \forall\,n\in[n_0,n_1],
+        \end{equation}
+        with $\varepsilon_E = 1$.
+        If (E2) is satisfied, the decay exponent is universal across blocks in the sense of
+        Hypothesis~\ref{hyp:decay}.
+        If (E2) is violated, the blocks fragment dynamically and the mean exponent
+        $\hat{\delta}_{\mathrm{exact}}$ captures only an average over block-dependent rates.
+        \item[\textbf{(E3)}] \textbf{Goodness of fit.}
+        The log-log regression of $\bar{\Sigma}_n$ against $n$ over $[n_0,n_1]$ achieves
+        $R^2\geq 0.97$.
+      \end{itemize}
+    \end{definition}
+
+    Conditions (E1)--(E3) are strictly stronger than (B1)--(B3) of O11 in the following sense:
+    (E2) now measures variance across exact Weil blocks (not proxy channels), so its
+    satisfaction implies universality at the level of the exact irreducible decomposition.
+    A violation of (E2) that was not present at the proxy level would indicate that the
+    central coordinate~$\gamma$ introduces genuine inter-block heterogeneity.
+
+  \subsection{The Block Independence Hypothesis}
+    \label{sec:bih}
+
+    Hypothesis~\ref{hyp:decay} can be reformulated operationally as:
+
+    \begin{hypothesis}[Block Independence Hypothesis (BIH)]
+      \label{hyp:bih}
+      Under conditions (E1)--(E3), the exact block-wise projective capacities $\Sigma_n^{(c)}$
+      converge to a common decay exponent $\delta_{\mathrm{exact}}$ across all generic blocks
+      $H_c\in\mathcal{C}_{\mathrm{gen}}$.
+      The blocks are therefore said to be \emph{dynamically independent at leading order}:
+      their individual amplitudes $C_c$ may differ, but their decay rates coincide.
+    \end{hypothesis}
+
+    This is labelled a hypothesis, not a theorem, because its truth depends on the
+    outcome of the numerical experiment.
+    The Block Independence Hypothesis is the central empirical claim of O12.
+    If it holds, condition (E2) is satisfied and a single exponent $\hat{\delta}_{\mathrm{exact}}$
+    can be extracted from the mean capacity.
+    If it fails, the decay is block-dependent and one must instead report a distribution
+    of per-block exponents $\hat{\delta}_c$.
+    In either case the result is scientifically informative: confirmation supports the
+    universality of the Cosmochrony spectral framework at the exact representation level,
+    while failure would identify a new structural obstruction requiring analysis.
+
+    \begin{remark}[Universality in mean vs block-by-block]
+      \label{rem:universality}
+      There is a subtle distinction between two levels of universality.
+      \emph{Block-by-block universality} holds when every individual curve $\Sigma_n^{(c)}$
+      decays with the same exponent.
+      \emph{Mean universality} holds only when the mean $\bar{\Sigma}_n$ decays as a power
+      law, even if individual blocks deviate.
+      Condition (E2) tests block-by-block universality.
+      If (E2) is violated but $R^2\geq 0.97$ still holds for $\bar{\Sigma}_n$, the result
+      is a mean universality statement only, and the per-block dispersion must be reported.
+    \end{remark}
