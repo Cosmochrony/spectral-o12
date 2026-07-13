@@ -1,5 +1,5 @@
 This repository contains the source of the **O12** Cosmochrony paper  
-[*Exact Weil-Block Projective Capacity on Heisenberg Graphs: Resolving the Final Obstruction to δ Extraction*](out/SpectralO12.pdf).
+*Exact Weil-Block Projective Capacity on Heisenberg Graphs: Resolving the Final Obstruction to δ Extraction*.
 
 This work extends the **spectral admissibility sub-programme** by replacing the
 proxy-level Weil-block construction of **O11** with the **exact Weil projection**,
