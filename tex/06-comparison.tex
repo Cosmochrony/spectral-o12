@@ -83,17 +83,30 @@
 
     \begin{enumerate}
       \item[\textbf{(i)}] \emph{$n=o(\sqrt{q})$, the unfolded Heisenberg regime.}
-        $\Pr(n_c^*\geq n)\to 1$ eventually: a generic block's nine centres remain disjoint
-        with probability $1-O(n/q)$, giving $\Delta r_n^{(c)}=18$ with that probability.
-        Since $|S_n|\asymp n^3$ (Bass--Guivarc'h, $D_{\mathrm{hom}}=4$), this yields, for a
-        \emph{single} generic block, not merely the ensemble mean,
+        Genericity (Definition~\ref{def:generic}, equation~\eqref{eq:genericity-ab}) does
+        \emph{not} force the nine points of $Z_{\alpha,\beta}$ to be pairwise distinct: a
+        positive but $O(1/q)$ fraction of admissible $(\alpha,\beta)$ has
+        $|Z_{\alpha,\beta}|\in\{3,5,7\}$ (e.g.\ when $\alpha=0$, $\alpha=-\beta$, or
+        $\alpha=\pm2\beta$) — at the tested primes this fraction is not negligible
+        ($21.5\%$ at $q=29$, $10.0\%$ at $q=61$), though it is $O(1/q)\subset O(n/q)$
+        asymptotically.
+        On the complementary event (probability $1-O(1/q)$), the nine centres are pairwise
+        distinct and, as radius-$(n{+}1)$ intervals, remain disjoint with probability
+        $1-O(n/q)$, giving $\Delta r_n^{(c)}=18$ with that joint probability; on the
+        exceptional event, $\Delta r_n^{(c)}=2|Z_{\alpha,\beta}|\in\{6,10,14\}$ once its
+        (fewer) centres are themselves disjoint.
+        Writing $|S_n|\sim\kappa n^3$ for the exact shell-growth constant $\kappa$ of
+        $\mathrm{Cay}(G_q,S)$ (Pansu; consistent with the ball-growth degree
+        $|B_n|\sim c\,n^4$ of Bass--Guivarc'h, since $S_n=B_n\setminus B_{n-1}$), this yields,
+        for a \emph{single} generic block, not merely the ensemble mean,
         \begin{equation}
-          \Sigma_n^{(c)} \sim 18\,n^{-3} \cdot \text{const}
+          \Sigma_n^{(c)} \sim \frac{18}{\kappa}\,n^{-3}
           \qquad\text{with probability } 1-O(n/q).
           \label{eq:unfolded-decay}
         \end{equation}
         This proves Hypothesis~\ref{hyp:decay} and the Block Independence Hypothesis
-        (Hypothesis~\ref{hyp:bih}) exactly in this regime, with
+        (Hypothesis~\ref{hyp:bih}) exactly in this regime (up to the $O(1/q)$-probability
+        degenerate exception above), with
         \begin{equation}
           \delta_{\mathrm{exact}} = 3,
           \label{eq:delta-3}
@@ -131,6 +144,23 @@
           \end{tabular}
         \end{center}
     \end{enumerate}
+
+    \begin{proposition}[Unfolded intrinsic exponent]
+      \label{prop:delta-3}
+      In the double limit $q\to\infty$, $n\to\infty$, $n=o(\sqrt{q})$, under uniform sampling
+      of generic blocks, the exact block-wise projective capacity satisfies
+      $\Sigma_n^{(c)}\sim(18/\kappa)\,n^{-3}$ (equation~\eqref{eq:unfolded-decay}) for a
+      single block with probability $1-O(n/q)$, so $\delta_{\mathrm{exact}}=3$
+      exactly, block-by-block.
+    \end{proposition}
+
+    \begin{proof}
+      Regime (i) above, combined with the exact saturation-depth formula of
+      Proposition~\ref{prop:saturation}: regime (i) shows survival to depth $n=o(\sqrt q)$
+      is generic, and on the surviving, non-degenerate event
+      (probability $1-O(1/q)-O(n/q)$) the incremental rank is exactly the constant $18$;
+      dividing by $|S_n|\sim\kappa n^3$ gives the stated asymptotics.
+    \end{proof}
 
   \subsection{The finite-$q$ fitted slope is a crossover statistic}
     \label{sec:crossover}

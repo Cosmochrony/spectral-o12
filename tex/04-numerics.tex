@@ -86,8 +86,12 @@
   $\log\bar{\Sigma}_n = -\delta\log n + \log C$ is performed over the fitting window
   $[n_0,n_1]$ by ordinary least squares.
   The window boundaries $n_0$ and $n_1$ are determined as follows.
-  The lower bound $n_0$ is the smallest $n$ for which $|B_n|\geq q$ (ensuring that
-  the BFS has covered at least one full Weil-block ambient dimension).
+  The lower bound $n_0=\max\bigl(2,\lceil(q/4)^{1/4}\rceil\bigr)$ is a closed-form
+  approximation to the smallest $n$ for which $|B_n|\geq q$, using $|B_n|\sim n^4$
+  (Section~\ref{sec:background-and-notation}) rather than the exact ball size; it gives
+  $n_0=2$ at all three primes used here (Table~\ref{tab:params}), consistent with the exact
+  ball sizes ($|B_2|=17 < 29 \leq |B_3|=53$, etc.) only approximately, as expected of a
+  closed-form proxy for a threshold defined on the exact, slightly larger ball sizes.
   The upper bound $n_1$ is the last depth before the mean saturation flag
   $\bar{\Sigma}_n < \varepsilon_{\mathrm{sat}}=10^{-3}$ is triggered.
   Sensitivity to $[n_0,n_1]$ is assessed by varying $n_0$ by $\pm 2$ and $n_1$

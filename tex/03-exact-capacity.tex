@@ -62,17 +62,20 @@
       \Sigma_n^{(c)} = \frac{\Delta r_n^{(c)}}{|S_n|}.
       \label{eq:exact-cap}
     \end{equation}
-    Each element $g\in S_n$ contributes exactly $|S|^3=64$ candidate fingerprint vectors, one
-    per three-step path $\pi\in S^3$, so $\Delta r_n^{(c)}\leq\min(\dim H_c, 64\,|S_n|)
+    Each element $g\in S_n$ contributes at most $|S|^3=64$ candidate fingerprint vectors, one
+    per three-step path $\pi\in S^3$, so naively $\Delta r_n^{(c)}\leq\min(\dim H_c, 64\,|S_n|)
     =\min(q, 64\,|S_n|)$.
     Consequently $\Sigma_n^{(c)}=\Delta r_n^{(c)}/|S_n|$ is \emph{not} bounded by~$1$ in
     general: at the earliest shells, where $64\,|S_n|$ can exceed $|S_n|$ severalfold while
-    still remaining below $q$, $\Sigma_n^{(c)}$ can reach up to~$64$.
-    It is bounded by~$1$ only once $|S_n|\geq q$, i.e.\ once the ball has grown past a single
-    Weil-block ambient dimension.
+    still remaining below $q$, $\Sigma_n^{(c)}$ can exceed~$1$ substantially.
+    (The sharp bound is in fact $27$, not $64$: Proposition~\ref{prop:alpha-beta} below shows
+    the $64$ candidate vectors per node collapse onto at most $|P_{\leq 1}|\cdot|Z_{\alpha,\beta}|
+    \leq 3\cdot 9=27$ distinct frequencies.)
+    $\Sigma_n^{(c)}$ is bounded by~$1$ only once $|S_n|\geq q$, i.e.\ once the ball has grown
+    past a single Weil-block ambient dimension.
     This is confirmed by direct computation at $q=29$: block $(1,2,3)$ has
     $\Sigma_0^{(c)}=21$, and block $(3,5,11)$ has $\Sigma_0^{(c)}=23$, both driven by shell~$0$
-    (the identity, $|S_0|=1$) alone spawning up to $64$ candidate directions.
+    (the identity, $|S_0|=1$) alone, consistent with the sharp bound of~$27$.
     The pre-saturation regime is the range of depths $n$ for which $\Sigma_n^{(c)}$ is still
     positive and decaying: the block $H_c$ is saturated at depth $n^*$ defined by
     $\dim W_{\leq n^*}^{(c)}=q$.
@@ -97,9 +100,9 @@
       $e_K$, $K=K(u;s_1,s_2,s_3)\in\mathbb{Z}/q\mathbb{Z}$ given by
       \begin{equation}
         K(u;s_1,s_2,s_3) = A\,b(u) + A\,b(s_1) + B\,b(s_2) + C\,b(s_3) \pmod q,
-        \qquad A=c_1{+}c_2{+}c_3,\ B=c_2{+}c_3,\ C=c_3.
         \label{eq:frequency}
       \end{equation}
+      where $A=c_1{+}c_2{+}c_3$, $B=c_2{+}c_3$, $C=c_3$.
       In particular $K$ depends on $u,s_1,s_2,s_3$ only through their $b$-coordinates; the
       translational coordinate $a(u)$ and the central coordinate $\gamma(u)$ enter only the
       (unit-modulus) phase multiplying $e_K$, never the frequency itself.
@@ -130,8 +133,8 @@
       \label{prop:alpha-beta}
       For a generic block $c=(c_1,c_2,c_3)$ (so $A\neq 0$, hence invertible mod~$q$),
       \begin{equation}
-        \dim W_{\leq n}^{(c)} = \bigl|\,P_{\leq n+1} + \alpha T + \beta T\,\bigr| \pmod q,
-        \qquad \alpha=B/A,\quad \beta=C/A \pmod q.
+        \dim W_{\leq n}^{(c)} = \bigl|\,(P_{\leq n+1} + \alpha T + \beta T) \bmod q\,\bigr|,
+        \qquad \alpha=B/A \bmod q,\quad \beta=C/A \bmod q.
         \label{eq:alpha-beta-rank}
       \end{equation}
       Consequently $\dim W_{\leq n}^{(c)}$, and hence $\Sigma_n^{(c)}$, depends on the
@@ -245,6 +248,11 @@
         $R^2\geq 0.97$.
       \end{itemize}
     \end{definition}
+
+    Condition (E1) is not satisfied at the primes used in Section~\ref{sec:results}, for the
+    structural reason given in Section~\ref{sec:discussion} (``Adapted measurability
+    condition (E1$'$)''), which relaxes the window-depth requirement to
+    $n_1-n_0\geq 3$; results below are reported against this adapted condition.
 
     Conditions (E1)--(E3) are strictly stronger than (B1)--(B3) of O11 in the following sense:
     (E2) now measures variance across exact Weil blocks (not proxy channels), so its

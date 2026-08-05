@@ -52,7 +52,8 @@
       \includegraphics[width=0.75\linewidth]{../code/fig5_coherence}
       \caption{Central coordinate coherence $\ell_\gamma(n)$ per BFS shell at $q=61$.
       The coherence falls from 1.0 to 0.3 over 12 shells, confirming that the shell's
-      $\gamma$-coordinates diversify well within the fitting window $[n_0,n_1]=[2,8]$.
+      $\gamma$-coordinates diversify well within the fitting window $[n_0,n_1]=[2,7]$
+      (Table~\ref{tab:delta}).
       By Remark~\ref{rem:blind}, this diversification has no effect on $\Sigma_n^{(c)}$ or
       on $\hat{\delta}_{\mathrm{exact}}$: the rank observable computed by this pipeline is
       exactly blind to $\gamma$, so $\ell_\gamma(n)$ is a diagnostic of the BFS geometry
@@ -63,12 +64,19 @@
   \subsection{Adapted measurability condition (E1$'$)}
 
     Condition (E1) (window $\geq 15$ data points) is not satisfied at any tested prime.
-    This is not a failure of the method but a structural consequence of the
-    reduced ambient dimension: the exact block $H_c$ has dimension $q$, while the O11
-    proxy channel has dimension $q^2$.
-    Saturation of $H_c$ occurs at depth $n^* \sim q^{1/4}$ (roughly when the cumulative
-    fingerprint count exceeds $q$), compared to $n^* \sim q^{1/2}$ for the proxy.
-    The fitting window is therefore structurally shorter for the exact projection.
+    This is not a failure of the method but a structural consequence of the exact
+    saturation-depth law of Section~\ref{sec:comparison}: saturation of $H_c$ occurs at a
+    depth that scales \emph{linearly} in $q$ (equation~\eqref{eq:linear-lower-bound},
+    $n_c^*\geq q/18$ uniformly, converging to a compactly supported distribution of median
+    $\approx 0.12q$ once $n=tq$ is reached).
+    At the tested primes $q\leq 61$ this places the typical saturation depth already within
+    the shell-depth cap $n_{\max}\leq 11$ used at these primes (Table~\ref{tab:params}):
+    for instance, the exact saturation-depth distribution at $q=61$ has median~$6$, matching
+    the observed fitting window $[2,7]$ (Table~\ref{tab:delta}).
+    The fitting window is therefore short because the block saturates within the first few
+    shells at these small primes, not because of an asymptotic $q$-dependent rate; the
+    proxy's longer window at $q=307$ reflects the same construction sampled at a much
+    larger prime, not a different saturation mechanism.
 
     We adopt the following adapted condition for the exact-block regime:
     \begin{itemize}
@@ -94,8 +102,8 @@
     \paragraph{Block sample size.}
       The number of blocks per prime is 15--50, representing a fraction
       $O(M_{\mathrm{block}}/q^3) \leq 10^{-3}$ of all generic blocks.
-      The inter-seed standard deviation $\sigma_{\mathrm{seed}}(\hat{\delta}) \approx 0.24$
-      at $q=29$ indicates non-negligible sampling variance.
+      The inter-seed standard deviation $\sigma_{\mathrm{seed}}(\hat{\delta}) = 0.08$
+      at $q=29$ (Table~\ref{tab:delta}) indicates modest but non-negligible sampling variance.
       Larger samples at fixed $q$ would reduce this variance.
 
     \paragraph{Short windows and sensitivity.}
@@ -111,7 +119,8 @@
       As a consequence, the pre-saturation window is intrinsically shorter,
       with a minimal length of $4$--$8$ points even at moderate primes.
       This is not a numerical limitation but a structural property of the exact Weil
-      decomposition, and motivates the relaxed condition~(E1$'$) of Section~\ref{sec:bih}.
+      decomposition, and motivates the relaxed condition~(E1$'$) introduced above
+      (Section~\ref{sec:discussion}).
 
     \paragraph{$q$-convergence.}
       The values $\hat{\delta}_{\mathrm{exact}} = 4.37$ ($q=29$), $4.28$ ($q=53$), and

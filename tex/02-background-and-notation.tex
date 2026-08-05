@@ -102,13 +102,15 @@
     \paragraph{Key structural distinction.}
       The difference between the exact projection and the proxy is therefore not
       merely quantitative but structural:
-      the exact projection operates in a genuine irreducible representation of $G_q$
-      that is sensitive to the non-commutativity of the group,
+      the exact projection operates in a genuine irreducible representation of $G_q$,
+      which is in general sensitive to the non-commutativity of the group,
       while the proxy operates in a family of one-dimensional characters of the
       abelianised group $G_q^{\mathrm{ab}}\cong(\mathbb{Z}/q\mathbb{Z})^2$.
-      Whether the capacity dynamics in the exact representation share a common
-      decay exponent with the proxy-level dynamics is a non-trivial question
-      that the present paper addresses experimentally.
+      Whether the specific rank-based capacity observable $\Sigma_n^{(c)}$ built from the
+      exact representation is \emph{itself} sensitive to this non-commutativity — as opposed
+      to the representation merely containing it — is a non-trivial question that
+      Section~\ref{sec:exact-capacity} answers analytically, not experimentally: it is not
+      (Remark~\ref{rem:blind}).
 
 \subsection{Block-wise projective capacity: recap of O11}
   \label{sec:o11-recap}
@@ -138,7 +140,13 @@
     The converged value $\hat{\delta}_{\mathrm{cap}}\approx 3.4$ is a proxy-level estimate.
     Two interpretations were left open in O11: a proxy-level artefact due to the
     absence of~$\gamma$, or an insufficiently large~$q$.
-    Both are addressed by the exact Weil projection at $q\geq 211$ in the present paper.
+    The first is addressed by the exact Weil projection at $q\in\{29,53,61\}$ in the present
+    paper (Section~\ref{sec:comparison} resolves it in the negative: the central coordinate
+    is exactly inert for this observable, not a proxy-level artefact).
+    The second — insufficiently large~$q$ — is reframed rather than settled by finite-$q$
+    computation: Section~\ref{sec:comparison} derives the intrinsic asymptotic exponent
+    analytically, in closed form, making further finite-$q$ extension useful only as an
+    empirical check, not as the route to the asymptotic value.
 
     This motivates the construction of an exact block-wise capacity in the full Weil
     representation, which we develop in Section~\ref{sec:exact-capacity}.
