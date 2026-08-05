@@ -91,11 +91,14 @@ Resolving the Final Obstruction to $\delta$ Extraction}
     \end{equation}
     The phase factor $\psi_c(\gamma)$ contributed by the central extension is a
     non-trivial multiplicative twist that is absent from the abelianised proxy.
-    Neglecting~$\gamma$ amounts to projecting the metaplectic dynamics onto its
-    commutative shadow, which may either over- or under-estimate the effective
-    capacity decay rate.
-    Whether this phase accelerates or decelerates channel saturation is an empirical
-    question that only the exact projection can resolve.
+    A priori, neglecting~$\gamma$ could either over- or under-estimate the effective
+    capacity decay rate of the exact representation relative to the proxy.
+    The present paper resolves this question directly, in closed form
+    (Proposition~\ref{prop:alpha-beta}, Remark~\ref{rem:blind}): for the rank-based
+    capacity observable $\Sigma_n^{(c)}$ studied here, the phase $\psi_c(\gamma)$ turns out
+    to be exactly inert. It is present in the representation and in the group action, but
+    provably invisible to this specific observable, for every prime, every generic block,
+    and every shell.
 
   \subsection{O12 as a validation paper}
 
@@ -107,25 +110,21 @@ Resolving the Final Obstruction to $\delta$ Extraction}
     structural prediction of the Cosmochrony framework.
 
     We do not refit the $\delta\mapsto\beta$ relation in the present paper.
-    Rather, we use the structural mapping derived earlier in
-    O3--O7~\cite{Beau2026a7,Beau2026a8,Beau2026a9,Beau2026a10,Beau2026a11} and propagate
-    the exactly measured $\hat{\delta}_{\mathrm{exact}}$ through that pre-existing relation.
-    The resulting constraint on~$\beta^*$ is then compared to the phenomenological
-    window $\beta^*\in(0.09,0.13)$ established from charged lepton mass ratios in O3~\cite{Beau2026a7}.
-
-    Concretely:
-    \begin{itemize}
-      \item if $\hat{\delta}_{\mathrm{exact}}$ is compatible with $\beta^*\in(0.09,0.13)$,
-      the programme gains strong quantitative support;
-      \item if $\hat{\delta}_{\mathrm{exact}}$ falls outside this window, this constitutes
-      a genuine tension that must be addressed before claiming predictive success.
-    \end{itemize}
-    In either case, the result carries decisive scientific content.
+    We instead determine, in Section~\ref{sec:comparison}, that the exact block-wise
+    construction studied here carries not one but three structurally distinct exponent-like
+    quantities — a finite-$q$ crossover slope, an unfolded intrinsic exponent, and a
+    saturation-scale scaling function — and that the O3--O7 structural mapping
+    derived in~\cite{Beau2026a7,Beau2026a8,Beau2026a9,Beau2026a10,Beau2026a11} does not, on
+    its own text, specify which of these its input $\delta$ is drawn from.
+    Section~\ref{sec:beta} accordingly withdraws the propagation to $\beta^*$ pending that
+    determination, rather than reporting a numerical constraint against the phenomenological
+    window $\beta^*\in(0.09,0.13)$ from O3~\cite{Beau2026a7}.
 
     \begin{quote}
-      \textit{O12 is the first point in the O-series where a quantitatively testable
-      prediction of the Cosmochrony framework is confronted with exact
-      representation-level data.}
+      \textit{O12 is the first point in the O-series where the exact representation-level
+      observable is not only measured but exactly characterised, resolving both which of
+      its properties are governed by the central coordinate~$\gamma$ (none) and what its
+      true asymptotic exponent is.}
     \end{quote}
 
   \subsection{Main results}
@@ -147,13 +146,16 @@ Resolving the Final Obstruction to $\delta$ Extraction}
     We extract $\hat{\delta}_{\mathrm{exact}}$ via log-log regression and assess sensitivity
     to fitting window, prime $q$, block sampling density, and coarse-graining scheme.
 
-    \textbf{Proxy vs exact comparison (Section~6).}
-    We systematically compare $\hat{\delta}_{\mathrm{exact}}$ and $\hat{\delta}_{\mathrm{cap}}$
-    and analyse the three structurally distinct scenarios.
+    \textbf{Exact combinatorial reduction and asymptotic exponent (Section~6).}
+    We prove that $\Sigma_n^{(c)}$ depends on $c$ only through a projective pair
+    $(\alpha,\beta)$ and is exactly blind to $\gamma$; we derive the exact block
+    saturation-depth law; and we show the finite-$q$ fitted slopes are crossover statistics
+    of that law, while the unfolded intrinsic exponent is exactly~$3$.
 
     \textbf{Consequence for $\beta^*$ (Section~7).}
-    We propagate $\hat{\delta}_{\mathrm{exact}}$ through the O3--O7 structural relation
-    and state the resulting constraint on~$\beta^*$ together with a consistency check.
+    We show that propagating either the finite-$q$ slopes or the unfolded exponent through
+    the O3--O7 structural relation presupposes a regime determination that relation's
+    derivation does not specify, and withdraw the propagation pending that determination.
 
     The paper is organised as follows.
     Section~\ref{sec:background-and-notation} recalls the Heisenberg Cayley graph setup, introduces the exact Weil
@@ -163,8 +165,9 @@ Resolving the Final Obstruction to $\delta$ Extraction}
     Section~\ref{sec:numerics} describes the numerical implementation, including the span-tracking algorithm,
     computational cost, and block sampling strategy.
     Section~\ref{sec:results} presents the results.
-    Section~\ref{sec:comparison} analyses the proxy vs exact comparison.
-    Section~\ref{sec:beta} derives the consequence for~$\beta^*$.
+    Section~\ref{sec:comparison} derives the exact combinatorial reduction and the intrinsic
+    asymptotic exponent, and situates the proxy vs exact comparison with respect to it.
+    Section~\ref{sec:beta} determines the status of the consequence for~$\beta^*$.
     Section~\ref{sec:discussion} discusses limitations and open directions.
     Section~\ref{sec:conclusion} concludes.
 

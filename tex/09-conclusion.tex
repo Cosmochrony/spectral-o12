@@ -8,53 +8,59 @@
   O10 identified the algorithmic obstruction in the dense TensorSketch;
   O11 lifted this obstruction via the bidimensional Fourier-character proxy,
   obtaining $\hat{\delta}_{\mathrm{cap}} \approx 3.39$;
-  O12 closes the final gap by implementing the exact Weil projection.
+  O12 closes the observability gap by implementing the exact Weil projection, and
+  additionally derives, in closed form, the intrinsic asymptotic exponent that the finite-$q$
+  fits of this and the previous papers in the series only ever approximated.
 
-  The central result of this paper is the measurement
+  The central results of this paper are twofold.
+  First, the finite-$q$ measurement
   \begin{equation}
-    \hat{\delta}_{\mathrm{exact}} \approx 4.3\text{--}4.8
+    \hat{\delta}_{\mathrm{exact}} \in \{4.37,\,4.28,\,4.80\}
     \qquad (q \in \{29,53,61\},\; R^2 > 0.98),
-    \label{eq:conclusion}
+    \label{eq:conclusion-finite-q}
   \end{equation}
-  establishing that the exact Weil projection yields a significantly larger capacity
-  exponent than the proxy: $\hat{\delta}_{\mathrm{exact}} > \hat{\delta}_{\mathrm{cap}}$
-  by approximately one unit.
-  This confirms Case B of Section~\ref{sec:comparison}.
-  The mechanism is identified via the coherence length $\ell_\gamma(n)$: the central
-  coordinate $\gamma$ of $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$ is dynamically
-  active throughout the fitting window, and its phase structure accelerates the
-  saturation of individual Weil blocks relative to the abelianised proxy.
+  independently reproduced by pure combinatorial set arithmetic (Section~\ref{sec:results}).
+  Second, and decisively, Section~\ref{sec:comparison} shows these values are finite-$q$
+  crossover slopes of the block saturation-depth distribution, not estimates of an intrinsic
+  asymptotic exponent, and derives that exponent exactly:
+  \begin{equation}
+    \delta_{\mathrm{exact}} = 3
+    \qquad \bigl(q\to\infty,\ n\to\infty,\ n=o(\sqrt{q})\bigr),
+    \label{eq:conclusion-asymptotic}
+  \end{equation}
+  from Heisenberg shell growth alone, holding block-by-block (not only in the mean) with
+  probability $1-O(n/q)$.
+  This exponent is exactly independent of the central coordinate $\gamma$ of
+  $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$ and of the metaplectic phase $\psi_c(\gamma)$:
+  Proposition~\ref{prop:alpha-beta} and Remark~\ref{rem:blind} show the rank observable
+  $\Sigma_n^{(c)}$ depends on the visited group elements only through their $b$-coordinates,
+  so no coherence mechanism built from $\gamma$ can affect it, by algebraic identity rather
+  than empirical regularity.
 
   The result carries both a positive and a cautionary message.
-  On the positive side, a measurable and structurally interpretable power-law
-  decay of $\bar{\Sigma}_n$ is confirmed in the exact representation, with $R^2 > 0.98$
-  across all tested primes.
-  The decay exponent is stable within the window $[n_0, n_1]$ and robust to
-  block sampling (within $\pm 0.3$ for the baseline window, up to $\pm 0.7$ if
-  the ramp-up shell $n=1$ is incorrectly included).
-  On the cautionary side, the accessible prime range ($q \leq 61$) is far from the
-  asymptotic regime, the fitting windows contain only 4--7 data points, and the
-  $q$-convergence of $\hat{\delta}_{\mathrm{exact}}$ is not yet established.
-  The asymptotic value of $\delta_{\mathrm{exact}}$ for $q \to \infty$ remains open.
+  On the positive side, a measurable and now exactly characterised power-law decay of
+  $\Sigma_n^{(c)}$ is established, block-by-block, in the unfolded regime, with $R^2 > 0.98$
+  confirmed at every finite-$q$ prime tested and the asymptotic exponent proved rather than
+  fitted.
+  On the cautionary side, the accessible finite-$q$ range ($q \leq 61$) sits inside the
+  crossover regime rather than the unfolded one: the fitted slopes there are real,
+  reproducible statistics of the same construction, but they are not, and were not intended
+  to be read as, the asymptotic exponent itself.
 
-  The consequence for the cascade exponent $\beta^*$ is now quantified.
-  Via the structural relation $\beta^* = 1/(\delta + \frac{1}{2})$ derived in O7~\cite{Beau2026a11},
-  the range $\hat{\delta}_{\mathrm{exact}} \approx 4.4$--$4.8$ implies
-  $\beta^* \approx 0.19$--$0.20$, which lies outside the phenomenological
-  target $\beta^* \in (0.09, 0.13)$ from charged lepton mass ratios (O3~\cite{Beau2026a7}).
-  This is an incompatible outcome in the sense of Section~\ref{sec:beta}.
-  The most natural resolution is that the accessible primes ($q \leq 61$) are
-  too small for asymptotic convergence: the proxy series showed a drift of
-  $\hat{\delta}_{\mathrm{cap}}$ from $5.78$ at $q=101$ to $3.39$ at $q=307$,
-  and the exact series may exhibit a large upward drift at $q \geq 211$.
-  Establishing whether this is the case is the central objective of O12-O1.
+  No constraint on the cascade exponent $\beta^*$ is drawn from the present paper.
+  Section~\ref{sec:beta} shows that substituting either the finite-$q$ crossover slopes or
+  the unfolded exponent $\delta_{\mathrm{exact}}=3$ into the O3--O7 relation
+  $\beta^*=1/(\delta+\tfrac12)$~\cite{Beau2026a11} would presuppose an answer to a question
+  this paper does not settle: which of the regimes identified in
+  Section~\ref{sec:three-regimes} that relation's derivation takes as input.
+  Resolving this requires re-auditing O3--O7 itself.
 
-  O12 is the first point in the O-series where the Cosmochrony framework
-  is confronted with exact representation-level data.
-  The resulting discrepancy with the proxy-level prediction does not
-  invalidate the programme, but sharpens it:
-  it identifies the central coordinate $\gamma$ as a dynamically active
-  component and shifts the quantitative target for the cascade exponent.
-  The resolution of this tension now depends on extending the computation
-  to larger primes and, if necessary, refining the structural relation between
-  $\delta$ and $\beta^*$ in the exact-block setting.
+  O12 is the first point in the O-series where the Cosmochrony framework is confronted with
+  exact representation-level data, and the first where the asymptotic capacity exponent of
+  this construction is derived rather than fitted.
+  The resulting picture sharpens the programme: the central coordinate $\gamma$, contrary to
+  the motivation for building the exact projection, is provably inert for this observable,
+  and the finite-$q$ numbers previously reported carry no evidence about it either way.
+  The next steps are to re-audit which regime the O3--O7 structural relation legitimately
+  takes as input (Section~\ref{sec:beta}), and to extend the classification of
+  Section~\ref{sec:comparison} to the O13 and O15 constructions that share this pipeline.

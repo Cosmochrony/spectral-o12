@@ -3,13 +3,17 @@
 
   \subsection{Computational parameters}
 
-    We perform computations at three primes $q\in\{211,307,401\}$.
-    The choice of $q=401$ extends beyond the $q=307$ plateau of O11 to confirm convergence
-    of $\hat{\delta}_{\mathrm{exact}}$ in a genuine asymptotic regime.
-    At each prime, the group $G_q$ has order $q^3\in\{9{,}393{,}931;\,28{,}934{,}443;\,64{,}481{,}201\}$.
+    We perform computations at three primes $q\in\{29,53,61\}$, the accessible range at the
+    per-block cost of the exact fingerprint pipeline (Section~\ref{sec:numerics},
+    ``Computational cost'' below; see also Section~\ref{sec:discussion} for the $q\leq 61$
+    limitation).
+    At each prime, the group $G_q$ has order $q^3\in\{24{,}389;\,148{,}877;\,226{,}981\}$.
     BFS is performed from the identity element; the BFS is truncated once a fraction $f$
-    of all $|G_q|$ nodes has been visited.
-    The precise value of $f$ at each prime is reported in Table~\ref{tab:params}.
+    of all $|G_q|$ nodes has been visited, and additionally capped at a fixed shell depth
+    $n_{\max}$ per prime (Table~\ref{tab:params}).
+    At the depths actually used ($n\leq n_{\max}\leq 11$), cumulative BFS node counts remain
+    in the low thousands, far short of the $f\cdot q^3$ truncation threshold (tens to hundreds
+    of thousands); every shell used by the computations below is complete, not truncated.
 
   \subsection{Per-block span-tracking algorithm}
 
@@ -31,10 +35,13 @@
       The theoretical cost per BFS step is $O(q^5)$: there are $O(q^3)$ generic blocks,
       each requiring $O(q)$ operations for the Weil action and $O(q)$ for the Gram--Schmidt
       step.
-      In practice, this is reduced to $O(q^4)$ per step by sampling only $M_{\mathrm{block}}$
-      blocks at each prime (see Section~\ref{sec:sampling}).
-      At $q=401$ with $M_{\mathrm{block}}=500$, the estimated wall-clock time per BFS step
-      is of order one second on a single core.
+      In practice, this is reduced by sampling only $M_{\mathrm{block}}$ blocks at each prime
+      (see Section~\ref{sec:sampling}).
+      At $q=61$, a fast-saturating block costs $\sim 0.3$\,s and a slow block (late
+      saturation) costs $\sim 4$\,s; the mean is $\sim 2$\,s per block.
+      The limiting factor is the fingerprint computation cost $O(|S_n|\cdot 64\cdot q)$ per
+      shell, which scales as $O(n^3 q)$; at $q=101$ this cost exceeds the compute budget used
+      for this paper, setting the accessible prime range at $q\leq 61$.
 
     \paragraph{Sparsity.}
       The shell $S_n$ has size $|S_n|\sim 4n^3$ for large $n$ (derivative of the ball growth
@@ -46,24 +53,24 @@
 \subsection{Sampling strategy for generic blocks}
   \label{sec:sampling}
 
-  The total number of generic multi-indices is $O(q^3)$: at $q=307$ this is approximately
-  $2.9\times 10^7$, far beyond what can be computed exhaustively.
+  The total number of generic multi-indices is $O(q^3)$: at $q=61$ this is approximately
+  $2.3\times 10^5$, far beyond what can be computed exhaustively at the per-block cost above.
   We sample $M_{\mathrm{block}}$ blocks at each prime using the following protocol.
 
   \textbf{Uniform random sampling.}
   At each prime, $M_{\mathrm{block}}$ multi-indices are drawn uniformly at random from
   the set of generic multi-indices (Definition~\ref{def:generic}).
-  We use $M_{\mathrm{block}}=500$ for $q\in\{211,307\}$ and $M_{\mathrm{block}}=300$
-  for $q=401$ (due to the higher per-block cost).
+  We use $M_{\mathrm{block}}\in\{50,20,15\}$ for $q\in\{29,53,61\}$ respectively
+  (Table~\ref{tab:params}).
 
   \textbf{Reproducibility and inter-seed dispersion.}
-  For each prime, the sampling is repeated over $N_{\mathrm{seed}}=5$ independent random
-  seeds.
-  We report both the mean estimate $\hat{\delta}_{\mathrm{exact}}$ and the inter-seed
-  standard deviation $\sigma_{\mathrm{seed}}(\hat{\delta})$, which quantifies the
-  sensitivity of the extraction to the particular set of blocks sampled.
+  At $q=29$, the sampling is repeated over $N_{\mathrm{seed}}=3$ independent random seeds,
+  and we report both the mean estimate $\hat{\delta}_{\mathrm{exact}}$ and the inter-seed
+  standard deviation $\sigma_{\mathrm{seed}}(\hat{\delta})$ (Table~\ref{tab:delta}), which
+  quantifies the sensitivity of the extraction to the particular set of blocks sampled.
   A small $\sigma_{\mathrm{seed}}$ provides evidence that $M_{\mathrm{block}}$ blocks
   are sufficient for a representative sample.
+  At $q\in\{53,61\}$, a single seed is used and $\sigma_{\mathrm{seed}}$ is not reported.
 
   \textbf{Stratification.}
   As a robustness check, we additionally run a stratified sample in which $c_1,c_2,c_3$
@@ -90,15 +97,16 @@
     \centering
     \caption{Computational parameters at each prime.
       $N_{\mathrm{node}}=|G_q|$; $f$ = BFS node fraction;
-      $M_{\mathrm{block}}$ = blocks per seed; $N_{\mathrm{seed}}$ = number of seeds.}
+      $n_{\max}$ = shell-depth cap; $M_{\mathrm{block}}$ = blocks per seed;
+      $N_{\mathrm{seed}}$ = number of seeds.}
     \label{tab:params}
-    \begin{tabular}{ccccc}
+    \begin{tabular}{cccccc}
       \hline
-      $q$ & $N_{\mathrm{node}}$ & $f$  & $M_{\mathrm{block}}$ & $N_{\mathrm{seed}}$ \\
+      $q$ & $N_{\mathrm{node}}$ & $f$  & $n_{\max}$ & $M_{\mathrm{block}}$ & $N_{\mathrm{seed}}$ \\
       \hline
-      211 & $9.4\times 10^6$    & 0.30 & 500                  & 5                   \\
-      307 & $2.9\times 10^7$    & 0.20 & 500                  & 5                   \\
-      401 & $6.4\times 10^7$    & 0.10 & 300                  & 5                   \\
+      29 & $2.4\times 10^4$    & 0.99 & 8  & 50 & 3 \\
+      53 & $1.5\times 10^5$    & 0.99 & 11 & 20 & 1 \\
+      61 & $2.3\times 10^5$    & 0.99 & 10 & 15 & 1 \\
       \hline
     \end{tabular}
   \end{table}

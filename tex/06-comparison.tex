@@ -1,95 +1,188 @@
-\section{Proxy vs Exact: Three Scenarios}
+\section{Proxy vs Exact, and the Unfolded Asymptotic Exponent}
   \label{sec:comparison}
 
-  The comparison between $\hat{\delta}_{\mathrm{exact}}$ and the proxy value
-  $\hat{\delta}_{\mathrm{cap}}\approx 3.4$ from O11~\cite{Beau2026a15} admits three
-  qualitatively distinct outcomes, each with a different structural interpretation.
-  We analyse them in turn, then identify the structural mechanism that would explain
-  the discrepancy or agreement in each case.
+  \subsection{What the proxy/exact comparison can and cannot show}
 
-  \subsection{Case A: $\hat{\delta}_{\mathrm{exact}}\approx\hat{\delta}_{\mathrm{cap}}$}
+    By Remark~\ref{rem:blind}, $\Sigma_n^{(c)}$ is exactly independent of the translational
+    coordinate $a$ and of the central coordinate $\gamma$, for every prime, every generic
+    block, and every shell.
+    A difference between the fitted exact exponent $\hat{\delta}_{\mathrm{exact}}$ and the
+    O11 proxy value $\hat{\delta}_{\mathrm{cap}}\approx 3.39$~\cite{Beau2026a15} therefore
+    cannot be attributed to the metaplectic phase $\psi_c(\gamma)$ or to any coherence
+    mechanism built from it: no such mechanism is visible to either observable.
+    The exact and proxy constructions differ instead in ambient dimension ($q$ versus $q^2$)
+    and in the specific combinatorial covering problem each one instantiates.
+    Comparing their finite-$q$ fitted slopes is consequently not, by itself, informative
+    about an intrinsic asymptotic exponent.
+    The remainder of this section derives that exponent directly, in closed form, for the
+    exact construction.
 
-    If the exact and proxy exponents agree to within the uncertainty bands reported in
-    Table~\ref{tab:sensitivity}, the central coordinate $\gamma$ is dynamically
-    negligible at the asymptotic scale probed by these primes.
-    The interpretation is that the capacity decay is governed by the translational and
-    phase structure encoded in the $(a,b)$-coordinates alone, and the metaplectic
-    twist $\psi_c(\gamma)$ averages out across BFS shells without affecting the
-    leading-order rate.
+  \subsection{The generic-block measure is exactly uniform in $(\alpha,\beta)$}
 
-    This outcome would retroactively validate O11: the proxy observable is a faithful
-    instrument for $\delta$, and the result $\hat{\delta}_{\mathrm{cap}}\approx 3.4$
-    already constitutes the first reliable measurement.
-    It would also suggest that the asymptotic regime is already well-established at $q=307$
-    and that the proxy-level underestimate identified in O10 was of algorithmic rather
-    than structural origin.
-
-  \subsection{Case B: $\hat{\delta}_{\mathrm{exact}}>\hat{\delta}_{\mathrm{cap}}$}
-
-    If the exact exponent exceeds the proxy value, the central coordinate $\gamma$
-    accelerates the capacity decay.
-    The mechanism is the following.
-    In the exact projection, the phase $\psi_c(\gamma+bx)$ introduces coherent
-    interference between path contributions from different shells: paths that land
-    on group elements with different $\gamma$-coordinates but the same $(a,b)$-projection
-    are now distinguishable in $H_c$, contributing genuinely new directions to the span.
-    This increases the incremental rank $\Delta r_n^{(c)}$ at early depths (when
-    $\gamma$-diversity is high), which raises $\Sigma_n^{(c)}$ at small $n$, but
-    the span saturates faster because the effective ambient dimension is $q$ rather than
-    $q^2$ — leading to a steeper decay at intermediate depths.
-
-    This outcome implies that O11 systematically underestimated $\delta$, and that the
-    phenomenological window for $\beta^*$ must be recomputed using $\hat{\delta}_{\mathrm{exact}}$
-    as input to the O3--O7 structural relation.
-
-  \subsection{Case C: $\hat{\delta}_{\mathrm{exact}}<\hat{\delta}_{\mathrm{cap}}$}
-
-    If the exact exponent falls below the proxy value, the central coordinate $\gamma$
-    decelerates the capacity decay.
-    The mechanism here is the opposite of Case B: the metaplectic phase $\psi_c(\gamma+bx)$
-    introduces destructive interference between path contributions, reducing the
-    effective incremental rank at each shell.
-    This would mean that paths which the proxy counted as independent are in fact
-    correlated in the exact representation via the central extension, so the span
-    grows more slowly and $\delta$ is smaller.
-
-    This outcome does not invalidate the programme but imposes a downward revision of
-    $\hat{\delta}$ and a corresponding widening of the constraint on $\beta^*$.
-    It would also raise a deeper question: whether the slower decay reflects a genuine
-    property of the physical dynamics or an artefact of insufficient $q$ (i.e.\ the
-    asymptotic regime not yet reached).
-    The convergence of $\hat{\delta}_{\mathrm{exact}}$ with $q$ in Table~\ref{tab:delta}
-    is the primary diagnostic for distinguishing these two interpretations.
-
-  \subsection{Structural explanation via the metaplectic phase}
-    \label{sec:structural-explanation}
-
-    All three cases can be understood through a single structural parameter: the
-    effective coherence length $\ell_\gamma$ of the central phase across a BFS shell.
-    Formally, define
+    Write $\alpha=(c_2+c_3)/A$, $\beta=c_3/A$ as in Proposition~\ref{prop:alpha-beta}.
+    The inverse change of variables is $c_1=(1-\alpha)A$, $c_2=(\alpha-\beta)A$, $c_3=\beta A$,
+    so O12's genericity conditions ($c_1,c_2,c_3\neq 0$ and $A\neq 0$, Definition~\ref{def:generic})
+    are equivalent to
     \begin{equation}
-      \ell_\gamma(n) = \left|\frac{1}{|S_n|}\sum_{g\in S_n}
-                         e^{2\pi i c\,\gamma_g/q}\right|,
-      \label{eq:coherence}
+      A\neq 0, \qquad \beta\neq 0, \qquad \alpha\neq\beta, \qquad \alpha\neq 1.
+      \label{eq:genericity-ab}
     \end{equation}
-    where $\gamma_g$ is the central coordinate of $g\in S_n$.
-    If $\ell_\gamma(n)\approx 1$ (high coherence), the central phase acts as a nearly
-    constant multiplicative factor and the dynamics reduces to the proxy case (Case A).
-    If $\ell_\gamma(n)\ll 1$ (low coherence, $\gamma_g$ uniformly distributed), the central
-    phase randomises path contributions and modifies $\delta$ in either direction
-    depending on whether the randomisation enriches or impoverishes the span.
 
-    The regime of $\ell_\gamma$ as a function of $n$ can be extracted from the numerical
-    data as a byproduct of the span-tracking algorithm, providing an independent diagnostic
-    of the mechanism responsible for the observed discrepancy or agreement.
+    \begin{proposition}[Uniform projective measure]
+      \label{prop:uniform-ab}
+      Every admissible pair $(\alpha,\beta)$ satisfying~\eqref{eq:genericity-ab} has exactly
+      $q-1$ generic-triple preimages, one for each $A\neq 0$.
+      Consequently, uniform sampling of generic blocks $c=(c_1,c_2,c_3)$
+      (Section~\ref{sec:sampling}) induces the exact uniform distribution on
+      \begin{equation}
+        D_q = \{(\alpha,\beta)\in\mathbb{F}_q^2 : \beta\neq 0,\ \alpha\neq\beta,\ \alpha\neq 1\},
+        \qquad |D_q|=q^2-3q+3.
+        \label{eq:Dq}
+      \end{equation}
+    \end{proposition}
 
-  \subsection{Dependence on $q$: proxy artefact or asymptotic convergence?}
+    \begin{proof}
+      Immediate from the inverse change of variables above: each choice of $A\in\mathbb{F}_q^*$
+      determines a distinct triple $(c_1,c_2,c_3)$ for fixed $(\alpha,\beta)$, and these
+      triples are exactly the generic-triple preimages of $(\alpha,\beta)$.
+    \end{proof}
 
-    A fourth scenario is possible: $\hat{\delta}_{\mathrm{exact}}$ may depend on $q$ at
-    the primes tested, with convergence occurring only at $q\gg 401$.
-    If the exponents at $q\in\{211,307,401\}$ differ by more than $\sigma_{\mathrm{seed}}$
-    without forming a clear limit, neither Case A, B, nor C applies cleanly.
-    This scenario is identified in advance so that Table~\ref{tab:delta} can be read with
-    it in mind: a monotone trend in $\hat{\delta}_{\mathrm{exact}}$ with $q$ that has not
-    yet flattened would be evidence for an asymptotic artefact rather than a structural
-    effect of $\gamma$.
+    There is therefore no hidden block weight to estimate: the saturation-depth law below is
+    computed exactly, over a finite two-dimensional parameter set, with no sampling
+    approximation.
+
+  \subsection{Exact saturation-depth law}
+
+    \begin{proposition}[Maximum-gap saturation formula]
+      \label{prop:saturation}
+      Let $g_q(\alpha,\beta)$ be the largest circular gap between consecutive distinct
+      elements of $Z_{\alpha,\beta}=\alpha T+\beta T$ in $\mathbb{Z}/q\mathbb{Z}$.
+      The radius-$r$ circular intervals centred on $Z_{\alpha,\beta}$ cover the whole circle
+      if and only if $g_q(\alpha,\beta)\leq 2r+1$.
+      Since shell $n$ uses radius $r=n+1$ (Proposition~\ref{prop:alpha-beta}), block $c$
+      saturates first at exactly
+      \begin{equation}
+        n_c^* = \max\bigl(0,\ \lfloor (g_q(\alpha,\beta)-2)/2 \rfloor\bigr).
+        \label{eq:nstar}
+      \end{equation}
+    \end{proposition}
+
+    Since $Z_{\alpha,\beta}$ has at most $9$ elements, their largest circular gap satisfies
+    $g_q(\alpha,\beta)\geq\lceil q/9\rceil$, uniformly over all generic blocks, so
+    \begin{equation}
+      n_c^*/q \geq 1/18 + o(1)
+      \label{eq:linear-lower-bound}
+    \end{equation}
+    for every generic block: the saturation-depth scale is linear in $q$, not
+    $\sqrt{q}$ or any sublinear power.
+
+  \subsection{The three scale regimes}
+    \label{sec:three-regimes}
+
+    Equation~\eqref{eq:linear-lower-bound} settles the behaviour at every $n=o(q)$:
+
+    \begin{enumerate}
+      \item[\textbf{(i)}] \emph{$n=o(\sqrt{q})$, the unfolded Heisenberg regime.}
+        $\Pr(n_c^*\geq n)\to 1$ eventually: a generic block's nine centres remain disjoint
+        with probability $1-O(n/q)$, giving $\Delta r_n^{(c)}=18$ with that probability.
+        Since $|S_n|\asymp n^3$ (Bass--Guivarc'h, $D_{\mathrm{hom}}=4$), this yields, for a
+        \emph{single} generic block, not merely the ensemble mean,
+        \begin{equation}
+          \Sigma_n^{(c)} \sim 18\,n^{-3} \cdot \text{const}
+          \qquad\text{with probability } 1-O(n/q).
+          \label{eq:unfolded-decay}
+        \end{equation}
+        This proves Hypothesis~\ref{hyp:decay} and the Block Independence Hypothesis
+        (Hypothesis~\ref{hyp:bih}) exactly in this regime, with
+        \begin{equation}
+          \delta_{\mathrm{exact}} = 3,
+          \label{eq:delta-3}
+        \end{equation}
+        block-independent amplitude, and a mechanism that is purely the geometric shell
+        growth of $\mathrm{Cay}(G_q,S)$ — not a representation-theoretic or coherence effect.
+      \item[\textbf{(ii)}] \emph{$n\asymp\sqrt{q}$.}
+        Still $\Pr(n_c^*\geq n)\to 1$ eventually, by~\eqref{eq:linear-lower-bound}.
+        This scale can affect only the Cayley-shell denominator $|S_n|$, through
+        central-coordinate folding in the finite quotient; it cannot cause saturation of
+        the nine-interval numerator $\Delta r_n^{(c)}$, since saturation requires $n=\Omega(q)$.
+      \item[\textbf{(iii)}] \emph{$n=tq$, the only nontrivial saturation scale.}
+        Put $\alpha/q\to a$, $\beta/q\to b$ on the unit torus, and let $G(a,b)$ be the largest
+        circular gap of the nine torus points $\{ia+jb \bmod 1 : i,j\in\{-1,0,1\}\}$.
+        By Proposition~\ref{prop:uniform-ab}, the uniform measure on $D_q$ converges to Haar
+        measure on the torus, and the maximum-gap functional is continuous, so
+        \begin{equation}
+          n_c^*/q \;\Longrightarrow\; X := G(a,b)/2, \qquad \Pr(n_c^*\geq tq)\to\Pr(X\geq t).
+          \label{eq:scaling-limit}
+        \end{equation}
+        The limiting support has closure $[1/18,1/2]$ (lower endpoint: nine equally spaced
+        centres, e.g.\ $a=1/9,b=1/3$; upper endpoint: centres clustering).
+        Exact finite-field enumeration converges rapidly to this limit
+        (quantiles of $n_c^*/q$):
+        \begin{center}
+          \begin{tabular}{ccccc}
+            \hline
+            $q$    & min    & median & 90th pct.\ & max    \\
+            \hline
+            401    & 0.0524 & 0.1147 & 0.2693     & 0.4938 \\
+            809    & 0.0544 & 0.1174 & 0.2732     & 0.4969 \\
+            1601   & 0.0550 & 0.1187 & 0.2748     & 0.4984 \\
+            3203   & 0.0553 & 0.1193 & 0.2757     & 0.4992 \\
+            \hline
+          \end{tabular}
+        \end{center}
+    \end{enumerate}
+
+  \subsection{The finite-$q$ fitted slope is a crossover statistic}
+    \label{sec:crossover}
+
+    The saturation-depth law of Section~\ref{sec:three-regimes} supplies no power-law
+    exponent: survival tends to~$1$ at every sublinear scale $n=o(q)$, and the only
+    nontrivial scale $n\asymp q$ converges to a \emph{compactly supported scaling function},
+    not a power of $n$.
+    The intrinsic exponent visible in the unfolded regime is exactly~$3$
+    (equation~\eqref{eq:delta-3}); it cannot exceed~$3$ for a single unsaturated block.
+    Any steeper fitted slope, such as the $4.3$--$4.8$ reported in
+    Table~\ref{tab:delta}, is necessarily a finite-size crossover combining the intrinsic
+    $n^{-3}$ decay with the rapid collapse of the finite-$q$ survival probability.
+
+    This is confirmed directly at $q=29$, $m_{\mathrm{block}}=50$, by decomposing
+    $\bar{\Sigma}_n$ into its three exact factors — shell-size normalisation, per-surviving-block
+    novelty, and survival probability:
+    \begin{center}
+      \begin{tabular}{ccccc}
+        \hline
+        $n$ & $1/|S_n|$ & $\Pr(\text{survive})$ & $\mathbb{E}[\Delta r_n\mid\text{survive}]$ & $\bar{\Sigma}_n$ \\
+        \hline
+        0 & 1.000  & 1.00 & 19.1 & 19.120  \\
+        1 & 0.250  & 1.00 & 5.36 & 1.340   \\
+        2 & 0.083  & 0.62 & 3.16 & 0.163   \\
+        3 & 0.028  & 0.32 & 2.75 & 0.0244  \\
+        4 & 0.012  & 0.24 & 2.83 & 0.0083  \\
+        5 & 0.006  & 0.18 & 2.44 & 0.0027  \\
+        \hline
+      \end{tabular}
+    \end{center}
+    The median saturation depth is $3$--$4$, and Table~\ref{tab:delta}'s own fitting window
+    for $q=29$ is $[n_0,n_1]=[2,5]$ — exactly where $\Pr(\text{survive})$ collapses from
+    $0.62$ to $0.18$, over half the sampled blocks dying within the fitted window itself.
+    $\mathbb{E}[\Delta r_n\mid\text{survive}]$, the genuine per-surviving-block novelty, is
+    comparatively flat ($\sim 2$--$3$) — nowhere near an $n^{-4.4}$-type decay on its own.
+    The steep fitted slope is overwhelmingly a product of shell growth and rapidly collapsing
+    survival probability, not a shared per-block decay law steeper than~$3$.
+    The same mechanism, at the correspondingly shorter windows imposed by the $O(q)$
+    saturation scale, accounts for the $q=53,61$ fits (windows $[2,7]$, well inside the
+    regime where $O(1)$ of the nine centres have already merged for a sizeable fraction of
+    sampled blocks).
+
+  \subsection{Summary}
+
+    The unfolded intrinsic exponent of the exact block-wise projective capacity is exactly
+    $\delta_{\mathrm{exact}}=3$ (equation~\eqref{eq:delta-3}), established analytically, with
+    a mechanism that is pure Heisenberg shell growth and is exactly blind to the central
+    coordinate $\gamma$ (Remark~\ref{rem:blind}).
+    The finite-$q$ fitted values $4.3$--$4.8$ at $q\in\{29,53,61\}$ (Table~\ref{tab:delta}) are
+    real, reproducible statistics of this same construction (Section~\ref{sec:results},
+    cross-check), but they are crossover slopes of the finite-$q$ saturation-depth
+    distribution, not estimates of an intrinsic asymptotic exponent, and they should not be
+    compared to the O11 proxy value $\hat{\delta}_{\mathrm{cap}}\approx 3.39$ as evidence for
+    or against a central-coordinate/coherence mechanism.

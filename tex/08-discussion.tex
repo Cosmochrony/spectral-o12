@@ -5,36 +5,45 @@
 
     The present paper has implemented the exact Weil projection for generic blocks
     $H_c$ of the three-step fingerprint on Heisenberg Cayley graphs $\mathrm{Cay}(G_q, S)$,
-    and extracted the capacity exponent $\hat{\delta}_{\mathrm{exact}}$ from the mean
-    block capacity $\bar{\Sigma}_n$ at primes $q\in\{29,53,61\}$.
-    The central finding is:
+    and extracted the finite-$q$ capacity slope $\hat{\delta}_{\mathrm{exact}}$ from the mean
+    block capacity $\bar{\Sigma}_n$ at primes $q\in\{29,53,61\}$:
     \begin{equation}
-      \hat{\delta}_{\mathrm{exact}} \approx 4.3\text{--}4.8,
-      \qquad
-      \hat{\delta}_{\mathrm{cap}} \approx 3.39 \quad\text{(O11 proxy)},
+      \hat{\delta}_{\mathrm{exact}} \in \{4.37,\,4.28,\,4.80\}
+      \qquad (q=29,53,61,\text{ respectively}),
       \label{eq:main-finding}
     \end{equation}
-    with $R^2 > 0.98$ across all tested primes, establishing Case B of Section~\ref{sec:comparison}:
-    the exact Weil projection yields a \emph{larger} exponent than the proxy.
+    with $R^2 > 0.98$ at every tested prime (Table~\ref{tab:delta}), independently
+    reproduced without evaluating a single Weil phase (Section~\ref{sec:results},
+    cross-check).
 
-    The mechanism is structural and identified via the coherence length $\ell_\gamma(n)$:
-    at $q=61$, $\ell_\gamma$ decays from 1.0 to 0.3 over the fitting window $[2,8]$
-    (Figure~\ref{fig:coherence}),
-    confirming that the central coordinate $\gamma$ is not dynamically negligible.
-    The observed decay of $\ell_\gamma(n)$ within the fitting window indicates that
-    the central phase is not a passive degree of freedom but actively contributes
-    to the diversification of accessible configurations as the BFS explores deeper shells.
-    This provides a direct dynamical mechanism for the acceleration of capacity saturation
-    in the exact representation: once $\gamma$-coordinates become distributed
-    (low $\ell_\gamma$), paths that share the same $(a,b)$-projection but differ
-    in $\gamma$ contribute independent directions to the span of $H_c$, compressing
-    the pre-saturation window and increasing $\delta$.
-    This explains why $\hat{\delta}_{\mathrm{exact}} > \hat{\delta}_{\mathrm{cap}}$.
-    This effect is directly observable in the decay of $\ell_\gamma(n)$ over the
-    fitting window (Figure~\ref{fig:coherence}), ruling out an interpretation in which
-    the central coordinate would remain effectively frozen at accessible scales.
+    These values are not evidence of a central-coordinate or metaplectic-phase mechanism.
+    Proposition~\ref{prop:alpha-beta} shows $\Sigma_n^{(c)}$ depends on the visited group
+    elements only through their $b$-coordinates, and Remark~\ref{rem:blind} establishes as
+    an algebraic identity — not an empirical regularity — that the rank observable computed
+    by this pipeline is exactly independent of the translational coordinate $a$ and of the
+    central coordinate $\gamma$.
+    No coherence measure built from $\gamma$, including $\ell_\gamma(n)$
+    (equation~\eqref{eq:coherence}, Figure~\ref{fig:coherence}), can influence
+    $\Sigma_n^{(c)}$ or the fitted slope~\eqref{eq:main-finding}.
 
-    All numerical conclusions reported in this work are invariant under
+    Section~\ref{sec:comparison} identifies what the values in~\eqref{eq:main-finding}
+    actually are: finite-$q$ crossover slopes of the block saturation-depth distribution.
+    The construction's unfolded intrinsic exponent is exactly $\delta_{\mathrm{exact}}=3$
+    (equation~\eqref{eq:delta-3}), proved analytically in the double limit $q\to\infty$,
+    $n\to\infty$, $n=o(\sqrt{q})$, from Heisenberg shell growth alone, holding for a single
+    generic block with probability $1-O(n/q)$.
+    This proves Hypothesis~\ref{hyp:decay} and the Block Independence Hypothesis
+    (Hypothesis~\ref{hyp:bih}) exactly in that regime — a stronger statement than either
+    hypothesis originally sought, since it holds block-by-block rather than only in the mean,
+    and is established analytically rather than by log-log regression at finite~$q$.
+    The inter-block variance $V_n>1$ reported in Table~\ref{tab:e2} throughout the fitting
+    window at all tested primes reflects the finite-$q$ saturation-depth distribution — how
+    many of the nine covering centres have already merged for a given block by depth $n$ —
+    and not a genuine departure from block-by-block universality of the intrinsic decay rate,
+    which Section~\ref{sec:three-regimes} establishes to be exactly~$3$ for every generic
+    block in the unfolded regime.
+
+    All numerical values reported in this work are invariant under
     the choice of seeds, fitting window within the admissible range,
     and block sampling strategy, within the stated uncertainties.
 
@@ -42,27 +51,14 @@
       \centering
       \includegraphics[width=0.75\linewidth]{../code/fig5_coherence}
       \caption{Central coordinate coherence $\ell_\gamma(n)$ per BFS shell at $q=61$.
-      The coherence falls from 1.0 to 0.3 over 12 shells, confirming that the central
-      phase $\psi_c(\gamma)$ becomes dynamically active well within the fitting window
-        $[n_0,n_1]=[2,8]$.
-        This provides the direct mechanistic explanation for Case~B
-        ($\hat{\delta}_{\mathrm{exact}} > \hat{\delta}_{\mathrm{cap}}$).}
+      The coherence falls from 1.0 to 0.3 over 12 shells, confirming that the shell's
+      $\gamma$-coordinates diversify well within the fitting window $[n_0,n_1]=[2,8]$.
+      By Remark~\ref{rem:blind}, this diversification has no effect on $\Sigma_n^{(c)}$ or
+      on $\hat{\delta}_{\mathrm{exact}}$: the rank observable computed by this pipeline is
+      exactly blind to $\gamma$, so $\ell_\gamma(n)$ is a diagnostic of the BFS geometry
+      alone, not a mechanism for the fitted decay slope.}
       \label{fig:coherence}
     \end{figure}
-
-    The Block Independence Hypothesis (Hypothesis~\ref{hyp:bih}) receives qualified support:
-    $R^2 > 0.97$ on $\bar{\Sigma}_n$ confirms a common decay rate at the mean level,
-    but the inter-block variance $V_n$ exceeds the threshold $\varepsilon_E = 1$
-    throughout the window (Table~\ref{tab:e2}), indicating block-by-block heterogeneity.
-    Per Remark~\ref{rem:universality}, the established universality is therefore of the
-    \emph{mean} type: the mean capacity follows a power law with a well-defined exponent,
-    but individual blocks may deviate.
-    This is sufficient to extract $\hat{\delta}_{\mathrm{exact}}$ as a property of the
-    ensemble average, which is the physically relevant observable.
-    The partial violation of~(E2) does not undermine the extraction of a well-defined
-    exponent at the averaged level, but instead reveals a non-trivial heterogeneity
-    across blocks, which may constitute a refined structural feature of the exact
-    Weil decomposition rather than a failure of the model.
 
   \subsection{Adapted measurability condition (E1$'$)}
 
@@ -118,42 +114,43 @@
       decomposition, and motivates the relaxed condition~(E1$'$) of Section~\ref{sec:bih}.
 
     \paragraph{$q$-convergence.}
-      The values $\hat{\delta}_{\mathrm{exact}} \approx 4.8$ ($q=29$),
-      $4.40$ ($q=53$), and $4.57$ ($q=61$) show no clear monotone trend,
-      suggesting a possible finite-size effect at $q=29$ with convergence
-      beginning at $q \geq 53$.
-      The asymptotic value of $\hat{\delta}_{\mathrm{exact}}$ for $q \to \infty$
-      cannot be determined from the present data.
+      The values $\hat{\delta}_{\mathrm{exact}} = 4.37$ ($q=29$), $4.28$ ($q=53$), and
+      $4.80$ ($q=61$) show no clear monotone trend.
+      Section~\ref{sec:comparison} explains why: these are finite-size crossover slopes
+      of the saturation-depth distribution, not partial sums converging to a single
+      asymptotic value, so no monotone trend is expected as $q$ grows through this range.
+      The unfolded intrinsic exponent is exactly $3$ (equation~\eqref{eq:delta-3}), derived
+      analytically rather than extrapolated from the present finite-$q$ data.
 
 \subsection{Open directions}
 
-  \paragraph{O12-O1: Larger prime range.}
+  \paragraph{O12-O1: Larger prime range, as an empirical check.}
     Extending to $q \in \{101, 151, 211\}$ requires either (a) reducing per-block cost
     via a randomised span-tracking algorithm (replacing Gram--Schmidt by a sketched
     rank estimator), or (b) distributed computation.
-    A convergence plot of $\hat{\delta}_{\mathrm{exact}}(q)$ over 5--6 primes would
-    resolve the finite-size question and establish the asymptotic value.
+    Unlike in the original framing of this direction, the asymptotic exponent is no longer
+    open (Section~\ref{sec:comparison} establishes it analytically); a convergence plot of
+    $\hat{\delta}_{\mathrm{exact}}(q)$ over larger primes would instead serve as an
+    independent empirical check that the fitted crossover slope moves toward the analytic
+    prediction as the fitting window is pushed further into the unfolded regime $n=o(\sqrt q)$.
 
   \paragraph{O12-O2: Full block survey.}
     At fixed $q$, sampling all $O(q^3)$ generic blocks rather than $O(50)$ would
-    reduce $\sigma_{\mathrm{seed}}$ and confirm whether block-by-block universality
-    (E2 satisfied) holds in the large-sample limit.
+    reduce $\sigma_{\mathrm{seed}}$ and provide a direct empirical check of the
+    block-by-block universality now established analytically in
+    Section~\ref{sec:three-regimes}.
 
-  \paragraph{O12-O3: Analytical derivation of the scaling exponent.}
-    The relation $\delta_{\mathrm{exact}} \approx 4.5$ is consistent with
-    $D_{\mathrm{hom}} - 1/2 = 3.5$ (where $D_{\mathrm{hom}} = 4$ for $\mathrm{Heis}_3$)
-    within the scatter, but the precise structural formula remains open.
-    An analytical derivation from the metaplectic phase structure of $\rho_c$
-    and the BFS geometry would close the programme at the O12 level.
+  \paragraph{O12-O3: Analytical derivation — resolved.}
+    Section~\ref{sec:comparison} provides the analytical derivation this direction sought:
+    the unfolded intrinsic exponent is exactly $\delta_{\mathrm{exact}}=3$, from Heisenberg
+    shell growth alone (equation~\eqref{eq:delta-3}), not the finite-$q$ crossover value
+    $\approx 4.5$, and not the metaplectic phase structure of $\rho_c$, which
+    Remark~\ref{rem:blind} shows plays no role in this observable.
 
   \paragraph{Consequence for $\beta^*$.}
-    The relation $\delta \mapsto \beta^*$ from O3--O7~\cite{Beau2026a7,Beau2026a8,Beau2026a9,Beau2026a10,Beau2026a11}
-    evaluated at $\hat{\delta}_{\mathrm{exact}} \approx 4.5$
-    gives $\beta^* \approx 0.19$--$0.21$ via~\eqref{eq:delta-beta-relation},
-    outside the target window $\beta^* \in (0.09, 0.13)$.
-    The most natural resolution is that the accessible primes $q \leq 61$ are
-    insufficient for asymptotic convergence, and $\hat{\delta}_{\mathrm{exact}}$
-    will grow toward the anticipated range $[7.4, 10.6]$ at $q \geq 211$.
-    Alternatively, the structural relation itself may require revision in the exact-block
-    setting (Source 2 of Section~\ref{sec:beta}).
-    Discriminating between these interpretations requires O12-O1.
+    Section~\ref{sec:beta} withdraws the propagation of $\hat{\delta}_{\mathrm{exact}}$
+    through the O3--O7 relation: neither the finite-$q$ fitted slopes nor the unfolded
+    exponent $\delta_{\mathrm{exact}}=3$ can be substituted into $g(\delta)$ without first
+    determining, by re-auditing O3--O7 itself, which of the regimes identified in
+    Section~\ref{sec:three-regimes} that relation's derivation presupposes.
+    No constraint on $\beta^*$ is drawn from the present paper.

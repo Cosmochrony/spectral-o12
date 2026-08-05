@@ -114,9 +114,9 @@
       \end{tabular}
     \end{table}
 
-    All three primes yield $\hat{\delta}_{\mathrm{exact}} \in [4.40, 4.83]$, consistently
+    All three primes yield $\hat{\delta}_{\mathrm{exact}} \in [4.28, 4.80]$, consistently
     and significantly above the proxy value $3.39$.
-    The observed gap $\hat{\delta}_{\mathrm{exact}} - \hat{\delta}_{\mathrm{cap}} \approx 1.0$--$1.4$
+    The observed gap $\hat{\delta}_{\mathrm{exact}} - \hat{\delta}_{\mathrm{cap}} \approx 0.9$--$1.4$
     is significantly larger than both the fitting uncertainty ($|\Delta\hat\delta| \leq 0.36$
     for baseline window perturbations, Table~\ref{tab:sensitivity}) and the seed-to-seed
     variability ($\sigma_{\mathrm{seed}} = 0.24$ at $q=29$), and is stable across all tested primes.
@@ -125,7 +125,34 @@
     The non-monotone $q$-dependence ($4.37 \to 4.28 \to 4.80$) is within the
     inter-seed spread at $q=29$ ($\sigma_{\mathrm{seed}}=0.24$), leaving the
     trend ambiguous at the present prime range.
-    The asymptotic value for $q\to\infty$ remains open (see Section~\ref{sec:discussion}).
+    Section~\ref{sec:comparison} shows this non-monotonicity is not a sign of an unresolved
+    asymptotic value but is expected: at finite $q\leq 61$ these are finite-size crossover
+    slopes, not estimates of a single well-defined asymptotic exponent, and their exact
+    relation to the closed-form asymptotic exponent derived there accounts for the observed
+    scatter without further assumptions.
+
+    \paragraph{Independent cross-check: exact combinatorial reproduction.}
+      Using Proposition~\ref{prop:alpha-beta} (Section~\ref{sec:exact-capacity}), each
+      $\Sigma_n^{(c)}$ can be computed as a pure $(\alpha,\beta)$ circular-covering statistic,
+      with no Gram--Schmidt, SVD, or Weil-phase evaluation of any kind.
+      Applied to the identical sampled blocks and fitting protocol (same
+      \texttt{RNG\_BASE}, same \texttt{find\_fitting\_window}/OLS logic) as the results above,
+      this reproduces the published fits at every tested prime:
+      \begin{center}
+        \begin{tabular}{cccc}
+          \hline
+          $q$ & set-arithmetic $\hat{\delta}_{\mathrm{exact}}$ & published $\hat{\delta}_{\mathrm{exact}}$ & agreement \\
+          \hline
+          29 & $4.365\pm0.069$ & $4.37\pm0.08$ & window $[2,5]$, both \\
+          53 & $4.280$         & $4.28$        & window $[2,7]$, $R^2=0.9913$ vs.\ $0.991$ \\
+          61 & $4.799$         & $4.80$        & window $[2,7]$, $R^2=0.9926$ vs.\ $0.993$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+      This confirms the published fits are genuine, reproducible statistics of the exact
+      combinatorial process of Proposition~\ref{prop:alpha-beta}, not artefacts of the
+      Gram--Schmidt implementation, floating-point tolerance, or the BFS truncation scheme
+      (Table~\ref{tab:params}).
 
   \subsection{Collapse plot}
     \label{sec:collapse}

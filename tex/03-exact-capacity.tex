@@ -62,11 +62,123 @@
       \Sigma_n^{(c)} = \frac{\Delta r_n^{(c)}}{|S_n|}.
       \label{eq:exact-cap}
     \end{equation}
-    Since $\Delta r_n^{(c)}\leq\min(\dim H_c, |S_n|)\leq\min(q, |S_n|)$, we have
-    $\Sigma_n^{(c)}\in[0,1]$ whenever $|S_n|\geq 1$.
+    Each element $g\in S_n$ contributes exactly $|S|^3=64$ candidate fingerprint vectors, one
+    per three-step path $\pi\in S^3$, so $\Delta r_n^{(c)}\leq\min(\dim H_c, 64\,|S_n|)
+    =\min(q, 64\,|S_n|)$.
+    Consequently $\Sigma_n^{(c)}=\Delta r_n^{(c)}/|S_n|$ is \emph{not} bounded by~$1$ in
+    general: at the earliest shells, where $64\,|S_n|$ can exceed $|S_n|$ severalfold while
+    still remaining below $q$, $\Sigma_n^{(c)}$ can reach up to~$64$.
+    It is bounded by~$1$ only once $|S_n|\geq q$, i.e.\ once the ball has grown past a single
+    Weil-block ambient dimension.
+    This is confirmed by direct computation at $q=29$: block $(1,2,3)$ has
+    $\Sigma_0^{(c)}=21$, and block $(3,5,11)$ has $\Sigma_0^{(c)}=23$, both driven by shell~$0$
+    (the identity, $|S_0|=1$) alone spawning up to $64$ candidate directions.
     The pre-saturation regime is the range of depths $n$ for which $\Sigma_n^{(c)}$ is still
     positive and decaying: the block $H_c$ is saturated at depth $n^*$ defined by
     $\dim W_{\leq n^*}^{(c)}=q$.
+
+  \subsection{Exact combinatorial reduction}
+    \label{sec:alpha-beta}
+
+    The incremental rank $\Delta r_n^{(c)}$ admits an exact closed form that requires no
+    Gram--Schmidt or singular-value computation, and that determines exactly which coordinates
+    of $c$ and of the visited group elements $\Sigma_n^{(c)}$ can depend on.
+
+    For $u=(a,b,\gamma)\in G_q$ write $b(u):=b$, and for $t\in\mathbb{Z}/q\mathbb{Z}$ write
+    $|t|_q=\min(t\bmod q,\,q-(t\bmod q))$ for the circular distance to~$0$.
+    Every generator $s\in S=\{X,X^{-1},Y,Y^{-1}\}$ has $b(s)\in T:=\{-1,0,1\}$
+    (with $b(X)=b(X^{-1})=0$).
+
+    \begin{proposition}[Frequency of a fingerprint vector]
+      \label{prop:frequency}
+      For $u=(a,b,\gamma)\in S_n$ and a path $\pi=(s_1,s_2,s_3)\in S^3$, the projected
+      fingerprint vector $\Pi_c(v(\pi,u))\in H_c$ is, as a function of the ambient coordinate
+      $x\in\mathbb{Z}/q\mathbb{Z}$, an exact scalar multiple of the single Fourier basis vector
+      $e_K$, $K=K(u;s_1,s_2,s_3)\in\mathbb{Z}/q\mathbb{Z}$ given by
+      \begin{equation}
+        K(u;s_1,s_2,s_3) = A\,b(u) + A\,b(s_1) + B\,b(s_2) + C\,b(s_3) \pmod q,
+        \qquad A=c_1{+}c_2{+}c_3,\ B=c_2{+}c_3,\ C=c_3.
+        \label{eq:frequency}
+      \end{equation}
+      In particular $K$ depends on $u,s_1,s_2,s_3$ only through their $b$-coordinates; the
+      translational coordinate $a(u)$ and the central coordinate $\gamma(u)$ enter only the
+      (unit-modulus) phase multiplying $e_K$, never the frequency itself.
+    \end{proposition}
+
+    \begin{proof}
+      Immediate from~\eqref{eq:weil-exact}: applying $\rho_{c_i}$ successively along
+      $u\to us_1\to us_1s_2\to us_1s_2s_3$ and tracking the exponent of the resulting
+      character in $x$ shows it is additive in the $b$-coordinates of $u,s_1,s_2,s_3$ with the
+      weights $A,A,B,C$ above; all $\gamma$- and $a$-dependence is absorbed into the phase
+      prefactor. Verified independently against the numeric output of the pipeline for a
+      generic block at $q=17$, all $64$ generator combinations, zero mismatches.
+    \end{proof}
+
+    Since distinct-frequency Fourier modes are orthogonal, Proposition~\ref{prop:frequency}
+    gives $W_{\leq n}^{(c)}=\mathrm{span}\{e_k : k\in F_{\leq n}^{(c)}\}$, where
+    $F_{\leq n}^{(c)}$ is the set of frequencies realised by all $(u,\pi)$ with $u\in B_n$.
+    As $u$ ranges over the ball $B_n$, $b(u)$ ranges exactly over
+    $P_{\leq n}:=\{b\in\mathbb{Z}/q\mathbb{Z} : |b|_q\leq n\}$ (the $b$-coordinate performs a
+    lazy $\{-1,0,+1\}$-step walk of length $\leq n$), so distributing the Minkowski sum
+    in~\eqref{eq:frequency} and using $P_{\leq n}+T=P_{\leq n+1}$ gives
+    \begin{equation}
+      F_{\leq n}^{(c)} = A\cdot P_{\leq n+1} + B\cdot T + C\cdot T \pmod q.
+      \label{eq:F-set}
+    \end{equation}
+
+    \begin{proposition}[Exact rank formula]
+      \label{prop:alpha-beta}
+      For a generic block $c=(c_1,c_2,c_3)$ (so $A\neq 0$, hence invertible mod~$q$),
+      \begin{equation}
+        \dim W_{\leq n}^{(c)} = \bigl|\,P_{\leq n+1} + \alpha T + \beta T\,\bigr| \pmod q,
+        \qquad \alpha=B/A,\quad \beta=C/A \pmod q.
+        \label{eq:alpha-beta-rank}
+      \end{equation}
+      Consequently $\dim W_{\leq n}^{(c)}$, and hence $\Sigma_n^{(c)}$, depends on the
+      multi-index $c$ only through the pair $(\alpha,\beta)\in(\mathbb{Z}/q\mathbb{Z})^2$: it is
+      invariant under rescaling $c\mapsto\lambda c$ for any $\lambda\neq 0$, and identical for
+      $c$ and $-c$ (both $A$ and $(B,C)$ flip sign together, so $(\alpha,\beta)$ is unchanged).
+    \end{proposition}
+
+    \begin{proof}
+      Divide~\eqref{eq:F-set} by the invertible scalar $A$ and reduce mod~$q$ (valid since
+      the quotient map $\mathbb{Z}\to\mathbb{Z}/q\mathbb{Z}$ is a homomorphism, so reduction
+      commutes with Minkowski sums).
+      The rescaling and sign invariance follow by inspection of $\alpha=B/A,\beta=C/A$.
+      Verified exactly against the real Gram--Schmidt pipeline (no shortcuts): blocks
+      $(1,2,3)$ and $(3,5,11)$ at $q=29$, $\Delta r_n$ for $n=0,1,2$ match to the integer,
+      including the saturation event.
+    \end{proof}
+
+    For reference, the central-coordinate coherence length used as a diagnostic elsewhere in
+    this paper is
+    \begin{equation}
+      \ell_\gamma(n) = \left|\frac{1}{|S_n|}\sum_{g\in S_n} e^{2\pi i c\,\gamma_g/q}\right|,
+      \label{eq:coherence}
+    \end{equation}
+    where $\gamma_g$ is the central coordinate of $g\in S_n$.
+
+    \begin{remark}[Blindness to $a$ and $\gamma$]
+      \label{rem:blind}
+      Equation~\eqref{eq:alpha-beta-rank} depends on the visited group elements only through
+      their $b$-coordinates.
+      The rank observable $\Sigma_n^{(c)}$ computed by this pipeline is therefore
+      \emph{exactly} independent of the translational coordinate $a$ and of the central
+      coordinate $\gamma$ — the coordinate the metaplectic phase $\psi_c(\gamma)$ acts on —
+      for every prime $q$, every generic block, and every shell.
+      This is an algebraic identity, not an empirical regularity subject to sampling noise:
+      no coherence measure built from $\gamma$ (such as $\ell_\gamma(n)$
+      of~\eqref{eq:coherence}) can influence $\Sigma_n^{(c)}$, since $\gamma$ never enters
+      \eqref{eq:alpha-beta-rank}.
+    \end{remark}
+
+    Since $Z_{\alpha,\beta}:=\alpha T+\beta T$ has at most $9$ elements, $\dim W_{\leq n}^{(c)}$
+    is the size of a union of at most $9$ circular intervals of radius $n+1$ centred on
+    $Z_{\alpha,\beta}\subset\mathbb{Z}/q\mathbb{Z}$: a finite additive-combinatorics (circular
+    covering) statistic on $\mathbb{Z}/q\mathbb{Z}$, not a representation-theoretic one.
+    Section~\ref{sec:comparison} shows that this closed form reproduces the published
+    $\hat\delta_{\mathrm{exact}}$ at every tested prime without evaluating a single Weil
+    phase, and derives its exact asymptotic behaviour.
 
   \subsection{Mean capacity and the decay hypothesis}
 
@@ -95,10 +207,14 @@
       (but block-dependent amplitudes $C_c$).
     \end{hypothesis}
 
-    The universality of the exponent across blocks is motivated by the fact that the Weil
-    blocks diagonalise the affine action of $G_q$: each generic block sees the same
-    structural constraints from the BFS exploration, so a common dynamical rate is expected.
-    This is however an empirical statement that the present paper tests.
+    The universality of the exponent across blocks is not a Weil/representation-theoretic
+    expectation but a structural consequence of Proposition~\ref{prop:alpha-beta}: every
+    generic block reduces to the same family of finite circular-covering problems on
+    $\mathbb{Z}/q\mathbb{Z}$, indexed only by $(\alpha,\beta)$, so a shared combinatorial rate
+    is expected on structural grounds alone, independently of any coherence or phase mechanism
+    (Remark~\ref{rem:blind}).
+    Whether a single exponent~$\delta_{\mathrm{exact}}$ actually governs this family, and at
+    which scale, is settled exactly in Section~\ref{sec:comparison}.
 
   \subsection{Measurability conditions (E1)--(E3)}
 
@@ -133,8 +249,11 @@
     Conditions (E1)--(E3) are strictly stronger than (B1)--(B3) of O11 in the following sense:
     (E2) now measures variance across exact Weil blocks (not proxy channels), so its
     satisfaction implies universality at the level of the exact irreducible decomposition.
-    A violation of (E2) that was not present at the proxy level would indicate that the
-    central coordinate~$\gamma$ introduces genuine inter-block heterogeneity.
+    By Remark~\ref{rem:blind}, a violation of (E2) cannot be attributed to the central
+    coordinate~$\gamma$, which never enters $\Sigma_n^{(c)}$: any inter-block heterogeneity
+    observed here must instead originate in the $(\alpha,\beta)$-dependence of
+    Proposition~\ref{prop:alpha-beta}, i.e.\ in how the nine-centre covering geometry differs
+    from block to block.
 
   \subsection{The Block Independence Hypothesis}
     \label{sec:bih}
@@ -171,4 +290,18 @@
       Condition (E2) tests block-by-block universality.
       If (E2) is violated but $R^2\geq 0.97$ still holds for $\bar{\Sigma}_n$, the result
       is a mean universality statement only, and the per-block dispersion must be reported.
+    \end{remark}
+
+    \begin{remark}[Resolution of Hypothesis~\ref{hyp:decay} in the unfolded limit]
+      \label{rem:hyp-resolved}
+      Section~\ref{sec:comparison} shows that Hypothesis~\ref{hyp:decay} and the Block
+      Independence Hypothesis hold exactly, not merely empirically, in the double limit
+      $q\to\infty$, $n\to\infty$, $n=o(\sqrt{q})$, under uniform sampling of generic blocks:
+      $\delta_{\mathrm{exact}}=3$, with block-independent amplitude, with probability
+      $1-O(n/q)$.
+      This unfolded value is not the finite-$q$ quantity fitted at $q\in\{29,53,61\}$
+      (Table~\ref{tab:delta}), which is a crossover statistic dominated by the finite-$q$
+      saturation-depth distribution rather than by the per-block decay rate alone; the two
+      are related but distinct, and the relation between them is made precise in
+      Section~\ref{sec:comparison}.
     \end{remark}
