@@ -29,7 +29,7 @@
     Section~\ref{sec:comparison} identifies what the values in~\eqref{eq:main-finding}
     actually are: finite-$q$ crossover slopes of the block saturation-depth distribution.
     The construction's unfolded intrinsic exponent is exactly $\delta_{\mathrm{exact}}=3$
-    (equation~\eqref{eq:delta-3}), proved analytically in the double limit $q\to\infty$,
+    (Proposition~\ref{prop:delta-3}), proved analytically in the double limit $q\to\infty$,
     $n\to\infty$, $n=o(\sqrt{q})$, from Heisenberg shell growth alone, holding for a single
     generic block with probability $1-O(n/q)$.
     This proves Hypothesis~\ref{hyp:decay} and the Block Independence Hypothesis
@@ -64,19 +64,23 @@
   \subsection{Adapted measurability condition (E1$'$)}
 
     Condition (E1) (window $\geq 15$ data points) is not satisfied at any tested prime.
-    This is not a failure of the method but a structural consequence of the exact
-    saturation-depth law of Section~\ref{sec:comparison}: saturation of $H_c$ occurs at a
-    depth that scales \emph{linearly} in $q$ (equation~\eqref{eq:linear-lower-bound},
-    $n_c^*\geq q/18$ uniformly, converging to a compactly supported distribution of median
+    This is not a failure of the method but a structural consequence of two compounding
+    factors.
+    First, the exact block $H_c$ has ambient dimension $q$, as opposed to $q^2$ for the O11
+    proxy channel, so the exact construction saturates at a structurally smaller scale.
+    Second, and more precisely, Section~\ref{sec:comparison} proves the exact saturation
+    depth itself scales \emph{linearly} in $q$ (equation~\eqref{eq:linear-lower-bound},
+    $n_c^*\geq q/18+o(1)$, converging to a compactly supported distribution of median
     $\approx 0.12q$ once $n=tq$ is reached).
     At the tested primes $q\leq 61$ this places the typical saturation depth already within
     the shell-depth cap $n_{\max}\leq 11$ used at these primes (Table~\ref{tab:params}):
-    for instance, the exact saturation-depth distribution at $q=61$ has median~$6$, matching
-    the observed fitting window $[2,7]$ (Table~\ref{tab:delta}).
-    The fitting window is therefore short because the block saturates within the first few
-    shells at these small primes, not because of an asymptotic $q$-dependent rate; the
-    proxy's longer window at $q=307$ reflects the same construction sampled at a much
-    larger prime, not a different saturation mechanism.
+    for instance, the exact saturation-depth distribution at $q=61$ has median~$6$,
+    consistent with the observed fitting window $[2,7]$ (Table~\ref{tab:delta}), whose upper
+    boundary is additionally set by the $\bar\Sigma_n<\varepsilon_{\mathrm{sat}}$ cutoff of
+    the fitting procedure (Section~\ref{sec:fitting}), not by $n_c^*$ alone.
+    The fitting window is therefore short both because the exact ambient dimension is
+    smaller than the proxy's and because saturation itself occurs at a smaller depth at
+    these small primes.
 
     We adopt the following adapted condition for the exact-block regime:
     \begin{itemize}
@@ -128,7 +132,7 @@
       Section~\ref{sec:comparison} explains why: these are finite-size crossover slopes
       of the saturation-depth distribution, not partial sums converging to a single
       asymptotic value, so no monotone trend is expected as $q$ grows through this range.
-      The unfolded intrinsic exponent is exactly $3$ (equation~\eqref{eq:delta-3}), derived
+      The unfolded intrinsic exponent is exactly $3$ (Proposition~\ref{prop:delta-3}), derived
       analytically rather than extrapolated from the present finite-$q$ data.
 
 \subsection{Open directions}
@@ -152,7 +156,7 @@
   \paragraph{O12-O3: Analytical derivation — resolved.}
     Section~\ref{sec:comparison} provides the analytical derivation this direction sought:
     the unfolded intrinsic exponent is exactly $\delta_{\mathrm{exact}}=3$, from Heisenberg
-    shell growth alone (equation~\eqref{eq:delta-3}), not the finite-$q$ crossover value
+    shell growth alone (Proposition~\ref{prop:delta-3}), not the finite-$q$ crossover value
     $\approx 4.5$, and not the metaplectic phase structure of $\rho_c$, which
     Remark~\ref{rem:blind} shows plays no role in this observable.
 

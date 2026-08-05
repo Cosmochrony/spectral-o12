@@ -185,7 +185,8 @@ O12 provides:
 - a proof, not merely a numerical comparison, that the finite-$q$ exact and proxy fitted
   slopes cannot differ because of $\gamma$-dynamics
 - the exact combinatorial mechanism behind the finite-$q$ fitted slopes (saturation-depth
-  crossover), and the intrinsic asymptotic exponent they approximate ($\delta_{\mathrm{exact}}=3$)
+  crossover, not an estimate of the asymptotic exponent), and the intrinsic asymptotic
+  exponent itself, derived independently in closed form ($\delta_{\mathrm{exact}}=3$)
 - a determination that no $\beta^*$ constraint can currently be drawn from this observable
 
 # Status of the Cascade Exponent $\beta^*$

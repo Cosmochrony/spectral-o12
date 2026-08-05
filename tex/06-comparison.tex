@@ -86,8 +86,9 @@
         Genericity (Definition~\ref{def:generic}, equation~\eqref{eq:genericity-ab}) does
         \emph{not} force the nine points of $Z_{\alpha,\beta}$ to be pairwise distinct: a
         positive but $O(1/q)$ fraction of admissible $(\alpha,\beta)$ has
-        $|Z_{\alpha,\beta}|\in\{3,5,7\}$ (e.g.\ when $\alpha=0$, $\alpha=-\beta$, or
-        $\alpha=\pm2\beta$) — at the tested primes this fraction is not negligible
+        $|Z_{\alpha,\beta}|\in\{3,5,7\}$ (e.g.\ when $\alpha=0$, $\alpha=-\beta$,
+        $\alpha=\pm2\beta$, or $\beta=\pm2\alpha$) — at the tested primes this fraction is
+        not negligible
         ($21.5\%$ at $q=29$, $10.0\%$ at $q=61$), though it is $O(1/q)\subset O(n/q)$
         asymptotically.
         On the complementary event (probability $1-O(1/q)$), the nine centres are pairwise
@@ -155,11 +156,26 @@
     \end{proposition}
 
     \begin{proof}
-      Regime (i) above, combined with the exact saturation-depth formula of
-      Proposition~\ref{prop:saturation}: regime (i) shows survival to depth $n=o(\sqrt q)$
-      is generic, and on the surviving, non-degenerate event
-      (probability $1-O(1/q)-O(n/q)$) the incremental rank is exactly the constant $18$;
-      dividing by $|S_n|\sim\kappa n^3$ gives the stated asymptotics.
+      $\Delta r_n^{(c)}=18$ requires the nine centres of $Z_{\alpha,\beta}$ to be pairwise
+      disjoint as radius-$(n{+}1)$ intervals, strictly stronger than mere non-saturation.
+      For $(i,j),(i',j')\in\{-1,0,1\}^2$ with $(i,j)\neq(i',j')$, the difference of the
+      corresponding centres is $k\alpha+m\beta$ with $(k,m)=(i-i',j-j')\in\{-2,\dots,2\}^2
+      \setminus\{0\}$, one of $24$ nonzero classes.
+      Since $D_q$ (equation~\eqref{eq:Dq}) is $\mathbb{F}_q^2$ minus $O(q)$ points lying on
+      three lines, for each fixed nonzero $(k,m)$ the linear map
+      $(\alpha,\beta)\mapsto k\alpha+m\beta$ pushes the uniform measure on $D_q$ to a
+      distribution on $\mathbb{F}_q$ that is uniform up to $O(1/q)$ total-variation error.
+      A union bound over the $24$ classes gives
+      \[
+        \Pr\bigl(\text{some two of the nine centres lie within circular distance }2n{+}2\bigr)
+        = O(n/q),
+      \]
+      the event on which the nine radius-$(n{+}1)$ intervals could overlap.
+      On the complementary event, all nine centres are pairwise disjoint, giving
+      $\Delta r_n^{(c)}=18$ exactly; combined with the $O(1/q)$ probability of the
+      degenerate case from regime~(i) above, this accounts for the full $O(n/q)$ exceptional
+      probability.
+      Dividing by $|S_n|\sim\kappa n^3$ gives the stated asymptotics.
     \end{proof}
 
   \subsection{The finite-$q$ fitted slope is a crossover statistic}
@@ -170,7 +186,7 @@
     nontrivial scale $n\asymp q$ converges to a \emph{compactly supported scaling function},
     not a power of $n$.
     The intrinsic exponent visible in the unfolded regime is exactly~$3$
-    (equation~\eqref{eq:delta-3}); it cannot exceed~$3$ for a single unsaturated block.
+    (Proposition~\ref{prop:delta-3}); it cannot exceed~$3$ for a single unsaturated block.
     Any steeper fitted slope, such as the $4.3$--$4.8$ reported in
     Table~\ref{tab:delta}, is necessarily a finite-size crossover combining the intrinsic
     $n^{-3}$ decay with the rapid collapse of the finite-$q$ survival probability.
@@ -207,7 +223,7 @@
   \subsection{Summary}
 
     The unfolded intrinsic exponent of the exact block-wise projective capacity is exactly
-    $\delta_{\mathrm{exact}}=3$ (equation~\eqref{eq:delta-3}), established analytically, with
+    $\delta_{\mathrm{exact}}=3$ (Proposition~\ref{prop:delta-3}), established analytically, with
     a mechanism that is pure Heisenberg shell growth and is exactly blind to the central
     coordinate $\gamma$ (Remark~\ref{rem:blind}).
     The finite-$q$ fitted values $4.3$--$4.8$ at $q\in\{29,53,61\}$ (Table~\ref{tab:delta}) are
