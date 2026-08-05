@@ -64,12 +64,10 @@
   \subsection{Adapted measurability condition (E1$'$)}
 
     Condition (E1) (window $\geq 15$ data points) is not satisfied at any tested prime.
-    This is not a failure of the method but a structural consequence of two compounding
-    factors.
-    First, the exact block $H_c$ has ambient dimension $q$, as opposed to $q^2$ for the O11
-    proxy channel, so the exact construction saturates at a structurally smaller scale.
-    Second, and more precisely, Section~\ref{sec:comparison} proves the exact saturation
-    depth itself scales \emph{linearly} in $q$ (equation~\eqref{eq:linear-lower-bound},
+    This is not a failure of the method but a structural consequence of the exact block's
+    ambient dimension ($q$, as opposed to $q^2$ for the O11 proxy channel) together with the
+    proved saturation-depth law of Section~\ref{sec:comparison}: the exact saturation depth
+    scales \emph{linearly} in $q$ (equation~\eqref{eq:linear-lower-bound},
     $n_c^*\geq q/18+o(1)$, converging to a compactly supported distribution of median
     $\approx 0.12q$ once $n=tq$ is reached).
     At the tested primes $q\leq 61$ this places the typical saturation depth already within
@@ -78,9 +76,8 @@
     consistent with the observed fitting window $[2,7]$ (Table~\ref{tab:delta}), whose upper
     boundary is additionally set by the $\bar\Sigma_n<\varepsilon_{\mathrm{sat}}$ cutoff of
     the fitting procedure (Section~\ref{sec:fitting}), not by $n_c^*$ alone.
-    The fitting window is therefore short both because the exact ambient dimension is
-    smaller than the proxy's and because saturation itself occurs at a smaller depth at
-    these small primes.
+    The fitting window is therefore short because saturation itself occurs at a small depth
+    at these small primes.
 
     We adopt the following adapted condition for the exact-block regime:
     \begin{itemize}
