@@ -245,14 +245,34 @@ It does not assume:
 - that blockwise universality must hold exactly
 - that the exact finite-$q$ regime already matches the asymptotic phenomenological target
 
+# Reproduction
+
+```bash
+cd code
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python3 spectral_O12.py --mode paper
+```
+
+Reproduces the published figures (`fig2_variance.pdf`–`fig5_coherence.pdf`) and Table~3
+(`δ̂_exact = 4.37, 4.28, 4.80` at `q = 29, 53, 61`) at fixed `RNG_BASE = 42`. The exact
+`(α,β)` closed-form cross-check reported in the paper (Section 5) — an independent,
+representation-free reproduction of the same three values — is
+`admissibility/notes/o12_set_arithmetic.py` in the parent Cosmochrony workspace; the
+saturation-depth law and BFS-truncation checks underlying the correction are
+`admissibility/notes/o12_saturation_law.py` and
+`admissibility/notes/o12_bfs_truncation_check.py`.
+
 # Repository Structure
 
 ```text
-paper/
-├── out/      # Compiled O12 PDF
+o12/
 ├── tex/      # LaTeX sources
+├── code/     # Reproduction script, figures, requirements.txt
 └── README.md
 ```
+`out/` (compiled PDF) is generated locally by `compile.sh` and is git-ignored, not part of the
+repository; the citable PDF is the one attached to the Zenodo record (see Citation below).
 # Citation
 
 If you reference this work, please cite:
