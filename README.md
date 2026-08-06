@@ -255,13 +255,17 @@ python3 spectral_O12.py --mode paper
 ```
 
 Reproduces the published figures (`fig2_variance.pdf`–`fig5_coherence.pdf`) and Table~3
-(`δ̂_exact = 4.37, 4.28, 4.80` at `q = 29, 53, 61`) at fixed `RNG_BASE = 42`. The exact
-`(α,β)` closed-form cross-check reported in the paper (Section 5) — an independent,
-representation-free reproduction of the same three values — is
-`admissibility/notes/o12_set_arithmetic.py` in the parent Cosmochrony workspace; the
-saturation-depth law and BFS-truncation checks underlying the correction are
-`admissibility/notes/o12_saturation_law.py` and
-`admissibility/notes/o12_bfs_truncation_check.py`.
+(`δ̂_exact = 4.37, 4.28, 4.80` at `q = 29, 53, 61`) at fixed `RNG_BASE = 42`. Three further
+scripts in `code/`, self-contained in this repository, reproduce the paper's independent
+checks without running `spectral_O12.py`'s full pipeline:
+
+- `code/o12_set_arithmetic.py` — the exact `(α,β)` closed-form cross-check of Section 5:
+  reproduces `δ̂_exact` at all three primes by pure combinatorial set arithmetic, with no
+  Weil phase, Gram–Schmidt, or SVD (`python3 o12_set_arithmetic.py`).
+- `code/o12_saturation_law.py` — the exact saturation-depth law of Section 6.3–6.4
+  (`python3 o12_saturation_law.py 29 53 61 101 211 401 809`).
+- `code/o12_bfs_truncation_check.py` — confirms the BFS mid-shell-truncation scheme does
+  not corrupt any shell used in the published tables (`python3 o12_bfs_truncation_check.py`).
 
 # Repository Structure
 
