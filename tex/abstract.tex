@@ -4,22 +4,27 @@ geometries: a geometric obstruction (O8--O9), an algorithmic obstruction (O10), 
 residual representation-level ambiguity at the proxy stage (O11).
 O11 introduced a bidimensional Fourier-character proxy for the Weil-block decomposition,
 obtaining a stable estimate $\hat{\delta}_{\mathrm{cap}}\approx 3.4$ at $q=307$ while
-coarse-graining away the central coordinate~$\gamma$, thereby leaving open direction O11-O2.
-The present paper closes this observable gap by implementing the exact Weil projection.
-For each generic Weil block~$H_c$ ($c\neq 0$, i.e.\ non-trivial central character),
-we maintain a $q\times q$ span tracker operating directly in the irreducible representation
-of $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$, at primes $q\in\{211,307,401\}$.
-We verify measurability conditions (E1)--(E3), establish a stable pre-saturation decay
-window, and extract $\hat{\delta}_{\mathrm{exact}}$ via log-log regression.
-Robustness is assessed against fitting window, prime~$q$, block sampling density, and
-coarse-graining scheme.
-The converged exponent $\hat{\delta}_{\mathrm{exact}} \approx 4.3$--$4.8$ at
-$q \in \{29, 53, 61\}$ (with $R^2 > 0.98$) exceeds the proxy value
-$\hat{\delta}_{\mathrm{cap}} \approx 3.39$ by approximately one unit,
-establishing Case~B: the exact Weil projection yields a larger exponent than the proxy,
-driven by the dynamically active central phase $\ell_\gamma(n)$.
-Via the structural relation $\beta^* = 1/(\delta + \frac{1}{2})$ derived in O3--O7,
-this implies $\beta^* \approx 0.19$--$0.20$, outside the phenomenological target
-$\beta^* \in (0.09, 0.13)$.
-This incompatible outcome is most plausibly a finite-size artefact at $q \leq 61$,
-motivating the extension to $q \geq 101$ as the next step (O12-O1).
+coarse-graining away the central coordinate~$\gamma$.
+The present paper closes this observable gap by implementing the exact Weil projection,
+and derives, in closed form, the intrinsic asymptotic exponent of the resulting
+observable~$\Sigma_n^{(c)}$.
+For each generic Weil block~$H_c$ ($c\neq 0$), we maintain a $q\times q$ span tracker
+operating directly in the irreducible representation of $\mathrm{Heis}_3(\mathbb{Z}/q\mathbb{Z})$,
+at primes $q\in\{29,53,61\}$, and extract finite-$q$ fitted slopes
+$\hat{\delta}_{\mathrm{exact}}\in\{4.37,4.28,4.80\}$ (all $R^2>0.98$), independently
+reproduced by pure combinatorial set arithmetic.
+We show that $\Sigma_n^{(c)}$ admits an exact closed form depending on the block~$c$ only
+through a projective pair $(\alpha,\beta)$, and is consequently, by algebraic identity and
+not merely as an empirical regularity, exactly independent of the translational
+coordinate~$a$ and of the central coordinate~$\gamma$: no coherence or metaplectic-phase
+mechanism can affect it.
+Using this closed form, we prove that the finite-$q$ fitted slopes above are crossover
+statistics of the block saturation-depth distribution, not estimates of an intrinsic
+asymptotic exponent, and derive the latter exactly: in the double limit $q\to\infty$,
+$n\to\infty$, $n=o(\sqrt{q})$, under uniform sampling of generic blocks,
+$\Sigma_n^{(c)}\sim\mathrm{const}\cdot n^{-3}$ holds block-by-block with probability
+$1-O(n/q)$, from Heisenberg shell growth alone.
+No constraint on the cascade exponent~$\beta^*$ is drawn from these results: substituting
+either the finite-$q$ slopes or the unfolded exponent into the O3--O7 structural relation
+$\beta^*=1/(\delta+\tfrac12)$ presupposes an answer, not settled here, to which of these
+regimes that relation's derivation takes as input.

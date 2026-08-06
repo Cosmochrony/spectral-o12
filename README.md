@@ -24,8 +24,8 @@ inside an exact Weil block $H_c$.
 
 # Core Result
 
-The paper establishes that the proxy-level observable of O11 and the exact Weil
-observable are **not in the same quantitative regime**.
+The paper measures the exact Weil observable at $q\in\{29,53,61\}$, and separately derives
+its intrinsic asymptotic exponent in closed form.
 
 Starting from:
 
@@ -38,29 +38,36 @@ Starting from:
 the analysis shows that:
 
 - a measurable pre-saturation decay regime is present already at accessible primes
-- the exact mean block capacity satisfies:
+- the exact mean block capacity satisfies $\bar\Sigma_n \sim C\,n^{-\hat\delta_{\mathrm{exact}}}$
+  over a short but structurally meaningful fitting window, with fitted slopes:
+    - $\hat\delta_{\mathrm{exact}} = 4.37 \pm 0.08$ at $q = 29$
+    - $\hat\delta_{\mathrm{exact}} = 4.28$ at $q = 53$
+    - $\hat\delta_{\mathrm{exact}} = 4.80$ at $q = 61$
+  ($R^2 > 0.98$ at all tested primes), independently reproduced by pure combinatorial set
+  arithmetic (no Weil phase, no Gram–Schmidt, no SVD)
+- these fitted slopes admit an exact closed form: $\Sigma_n^{(c)}$ depends on the block $c$
+  only through a projective pair $(\alpha,\beta)$, and is therefore, by algebraic identity,
+  **exactly independent of the central coordinate $\gamma$** and of the translational
+  coordinate $a$ — no coherence or metaplectic-phase mechanism can affect it
+- using this closed form, the fitted slopes above are shown to be **finite-$q$ crossover
+  statistics** of the block saturation-depth distribution, not estimates of an intrinsic
+  asymptotic exponent
+- the intrinsic unfolded exponent is derived exactly:
   \[
-  \bar\Sigma_n \sim C\,n^{-\delta_{\mathrm{exact}}}
+  \delta_{\mathrm{exact}} = 3 \qquad (q\to\infty,\ n\to\infty,\ n=o(\sqrt q)),
   \]
-  over a short but structurally meaningful fitting window
-- the extracted exact decay exponent is consistently larger than the O11 proxy value:
-    - $\hat\delta_{\mathrm{exact}} \approx 4.83 \pm 0.24$ at $q = 29$
-    - $\hat\delta_{\mathrm{exact}} \approx 4.40$ at $q = 53$
-    - $\hat\delta_{\mathrm{exact}} \approx 4.57$ at $q = 61$
-- the log-log fits are strong:
-    - $R^2 > 0.98$ at all tested primes
-- the central coherence observable $\ell_\gamma(n)$ decays significantly over the fitting window,
-  showing that the central coordinate is dynamically active
+  from Heisenberg shell growth alone, holding block-by-block (not only in the mean)
 
 Thus:
 
-- the exact Weil projection yields a larger decay exponent than the proxy
-- **Case B** is confirmed:
-  \[
-  \hat\delta_{\mathrm{exact}} > \hat\delta_{\mathrm{cap}}
-  \]
-- the proxy O11 underestimated the exact decay rate
-- the remaining issue is no longer observability, but asymptotic convergence in $q$
+- the central coordinate $\gamma$, contrary to the paper's original motivation for building
+  the exact projection, is provably inert for this observable
+- the gap between the finite-$q$ fitted slopes and the O11 proxy value
+  $\hat\delta_{\mathrm{cap}}\approx 3.39$ is real and reproducible but is not evidence of a
+  central-coordinate/coherence mechanism
+- the remaining issue is no longer observability or asymptotic convergence (both are now
+  settled) but determining which regime the O3–O7 $\delta\mapsto\beta^*$ relation legitimately
+  takes as input
 
 # Structural Role of O12
 
@@ -80,41 +87,48 @@ O12 introduces several decisive advances:
 
 - the **exact Weil-block observable** replacing the O11 proxy
 - a blockwise rank-tracking algorithm in irreducible dimension $q$
-- the central coherence observable
-  \[
-  \ell_\gamma(n)
-  \]
-  as an independent diagnostic of the metaplectic mechanism
-- the first exact extraction of the capacity exponent
-- numerical evidence that:
-    - the exact exponent exceeds the proxy exponent
-    - the central coordinate $\gamma$ is dynamically active
-    - the mean decay law is robust even when blockwise universality is violated
+- an exact closed form for that observable (Proposition on the projective pair
+  $(\alpha,\beta)$), proving it independent of $\gamma$ rather than merely diagnosing its
+  effect empirically — the central coherence observable $\ell_\gamma(n)$ is retained as a
+  diagnostic of the BFS geometry, not of the capacity observable itself
+- the first exact extraction of the finite-$q$ capacity slope, cross-checked by pure
+  combinatorial set arithmetic
+- the first derivation of the intrinsic unfolded asymptotic exponent, $\delta_{\mathrm{exact}}=3$,
+  in closed form
+- a decomposition showing the finite-$q$ fitted slopes are crossover statistics of the
+  saturation-depth distribution, not a departure from a shared per-block exponent
 
 # Interpretation of the Result
 
-The main conceptual outcome is that the central coordinate is **not a passive correction**
-to the proxy-level dynamics.
+The main conceptual outcome is that the central coordinate is **exactly irrelevant** to
+this rank-based capacity observable — a stronger and more surprising finding than the
+paper originally set out to test.
 
 The exact Weil projection shows that:
 
-- the proxy does not merely approximate the exact observable
-- the exact and proxy observables belong to different quantitative regimes
-- the metaplectic phase accelerates saturation of the exact blocks
+- the metaplectic phase $\psi_c(\gamma)$ is present in the representation and in the group
+  action, but is provably invisible to the rank observable $\Sigma_n^{(c)}$ computed here
+- the gap between the finite-$q$ exact and proxy fitted slopes reflects different ambient
+  dimensions and covering geometries, not different sensitivity to $\gamma$
+- the finite-$q$ fitted slopes are crossover statistics, not evidence of a steeper
+  intrinsic decay: the intrinsic unfolded exponent is exactly $3$, block-by-block, not
+  merely in the mean
 
 This leads to:
 
-- a steeper decay exponent in the exact representation
-- shorter fitting windows, not because of numerical failure, but because the exact
-  ambient block dimension is $q$ rather than $q^2$
-- a refined picture of universality:
-    - **universality in mean** is observed
-    - strict block-by-block universality is not established
+- shorter finite-$q$ fitting windows than the proxy, because the exact ambient block
+  dimension is $q$ rather than $q^2$ — a real structural feature, unrelated to $\gamma$
+- a refined picture of universality: block-by-block universality of the intrinsic exponent
+  is now **established analytically** (not merely tested for at the mean level), with the
+  observed finite-$q$ inter-block variance attributable to the saturation-depth
+  distribution rather than to a failure of universality
 
 In particular:
 
 - O11 identified the correct proxy-level observable
-- O12 shows that the exact observable shifts the exponent upward by about one unit
+- O12 shows the exact observable's finite-$q$ fitted slope is not directly comparable to
+  it as a measure of $\gamma$-dynamics, and derives the exact observable's own asymptotic
+  exponent independently
 
 # Relation to Previous Steps
 
@@ -168,57 +182,53 @@ The programme now identifies:
 O12 provides:
 
 - the exact implementation left open in O11
-- a direct comparison between proxy and exact decay exponents
-- a structural explanation of the discrepancy via the metaplectic phase
-- a quantitatively testable tension with the phenomenological target for $\beta^*$
+- a proof, not merely a numerical comparison, that the finite-$q$ exact and proxy fitted
+  slopes cannot differ because of $\gamma$-dynamics
+- the exact combinatorial mechanism behind the finite-$q$ fitted slopes (saturation-depth
+  crossover, not an estimate of the asymptotic exponent), and the intrinsic asymptotic
+  exponent itself, derived independently in closed form ($\delta_{\mathrm{exact}}=3$)
+- a determination that no $\beta^*$ constraint can currently be drawn from this observable
 
-# Main Tension Identified
+# Status of the Cascade Exponent $\beta^*$
 
-Using the structural relation inherited from O3–O7,
+No constraint on $\beta^*$ is drawn from O12.
+The O3–O7 structural relation
 \[
-\beta^* = \frac{1}{\delta + \tfrac12},
+\beta^* = \frac{1}{\delta + \tfrac12}
 \]
-the exact values of $\hat\delta_{\mathrm{exact}}$ imply:
-\[
-\beta^* \approx 0.19\text{--}0.20,
-\]
-which lies above the phenomenological target
-\[
-\beta^* \in (0.09, 0.13).
-\]
-
-This is an **incompatible outcome** in the current accessible prime range.
-
-The paper reports this tension explicitly and does not adjust the analysis to remove it.
+takes a capacity decay exponent $\delta$ as input, but O12 shows this construction carries
+three structurally distinct exponent-like quantities: the finite-$q$ fitted slope, the
+unfolded intrinsic exponent ($=3$), and a saturation-scale scaling function with no exponent
+at all. The O3–O7 derivation does not, on its own text, specify which of these is the
+intended input. Substituting any of them into the relation without first settling this
+would repeat the same category error the present paper corrects. Resolving it requires
+re-auditing O3–O7 itself.
 
 # Residual Open Problem
 
-What remains is no longer the existence of an exact observable.
+What remains is no longer the existence of an exact observable, nor its asymptotic
+exponent — both are now settled.
 
 The remaining tasks are:
 
-- extending the exact computation to larger primes
-- determining whether the exact series converges upward toward the O7 target range
-- deciding whether the structural relation $\delta \mapsto \beta^*$ must be revised
-  in the exact setting
-- clarifying the exact role of inter-block heterogeneity
+- re-auditing the O3–O7 structural relation to determine which regime its $\delta$ input
+  is drawn from, before any $\beta^*$ constraint can be stated
+- auditing O13 and O15, which share this pipeline, for the same regime confusion
+- classifying O16 and O17's own use of this construction
 
 # Open Directions
 
-1. **Larger-prime exact computation (O12-O1)**  
-   Extend the exact Weil-block computation to $q \geq 101$ and beyond
+1. **Larger-prime exact computation (O12-O1), as an empirical check**  
+   Extend the exact Weil-block computation to $q \geq 101$ to confirm empirically that the
+   fitted crossover slope moves toward the analytic prediction $\delta_{\mathrm{exact}}=3$
+   as the fitting window is pushed further into the unfolded regime.
 
-2. **Asymptotic convergence of $\delta_{\mathrm{exact}}$**  
-   Determine whether the current mismatch is a finite-size artefact
+2. **Re-audit of the structural relation $\delta \mapsto \beta^*$**  
+   Determine which of the three exponent-like regimes identified above O3–O7's derivation
+   actually presupposes.
 
-3. **Revision of the structural relation $\delta \mapsto \beta^*$**  
-   Re-derive the mapping using the exact observable rather than the proxy-level one
-
-4. **Full block survey**  
-   Test whether blockwise heterogeneity persists at larger sample sizes
-
-5. **Analytical derivation of $\delta_{\mathrm{exact}}$**  
-   Derive the exponent directly from the metaplectic structure and BFS geometry
+3. **Full block survey**  
+   Test the analytically-derived block-by-block universality at larger sample sizes.
 
 # Status
 
@@ -235,14 +245,38 @@ It does not assume:
 - that blockwise universality must hold exactly
 - that the exact finite-$q$ regime already matches the asymptotic phenomenological target
 
+# Reproduction
+
+```bash
+cd code
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python3 spectral_O12.py --mode paper
+```
+
+Reproduces the published figures (`fig2_variance.pdf`–`fig5_coherence.pdf`) and Table~3
+(`δ̂_exact = 4.37, 4.28, 4.80` at `q = 29, 53, 61`) at fixed `RNG_BASE = 42`. Three further
+scripts in `code/`, self-contained in this repository, reproduce the paper's independent
+checks without running `spectral_O12.py`'s full pipeline:
+
+- `code/o12_set_arithmetic.py` — the exact `(α,β)` closed-form cross-check of Section 5:
+  reproduces `δ̂_exact` at all three primes by pure combinatorial set arithmetic, with no
+  Weil phase, Gram–Schmidt, or SVD (`python3 o12_set_arithmetic.py`).
+- `code/o12_saturation_law.py` — the exact saturation-depth law of Section 6.3–6.4
+  (`python3 o12_saturation_law.py 29 53 61 101 211 401 809`).
+- `code/o12_bfs_truncation_check.py` — confirms the BFS mid-shell-truncation scheme does
+  not corrupt any shell used in the published tables (`python3 o12_bfs_truncation_check.py`).
+
 # Repository Structure
 
 ```text
-paper/
-├── out/      # Compiled O12 PDF
+o12/
 ├── tex/      # LaTeX sources
+├── code/     # Reproduction script, figures, requirements.txt
 └── README.md
 ```
+`out/` (compiled PDF) is generated locally by `compile.sh` and is git-ignored, not part of the
+repository; the citable PDF is the one attached to the Zenodo record (see Citation below).
 # Citation
 
 If you reference this work, please cite:

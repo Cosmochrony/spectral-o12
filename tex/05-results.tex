@@ -25,7 +25,8 @@
       \caption{Collapse plot of normalised block capacity
         $\tilde{\Sigma}_n^{(c)}=\Sigma_n^{(c)}/C_c$ vs rescaled BFS depth $n/n^*$,
         pooling sampled blocks at $q\in\{29,53,61\}$.
-        The dashed line is the master law $(n/n^*)^{-4.5}$.
+        The dashed line is the master law $(n/n^*)^{-\hat\delta}$ using the last prime's
+        fitted exponent, $(n/n^*)^{-4.80}$.
         Moderate alignment across primes and blocks supports mean universality
         of the decay exponent; residual spread reflects block-by-block
         heterogeneity consistent with the violation of condition~(E2).}
@@ -37,9 +38,12 @@
     satisfying condition~(E1$'$) ($\geq 4$ data points).
     Second, the inter-block spread is large (condition~E2 violated at all primes;
     see Section~\ref{sec:variance}): only mean universality is established.
-    Third, the saturation depth $n^*$ ranges from 4 to 13 shells per block at $q=61$,
-    with mean~$\approx 9$; the spread reflects heterogeneous block geometry and
-    is the dominant source of inter-block variance.
+    Third, the inter-block spread in $\Sigma_n^{(c)}$ reflects each sampled block's own
+    saturation depth $n_c^*$, whose exact distribution is derived in
+    Section~\ref{sec:comparison}: at $q=61$ it has median~$6$ (scaling linearly in $q$, not
+    the $q^{1/4}$ scale a naive dimension-counting heuristic would suggest), consistent with
+    the shell-depth cap $n_{\max}=10$ used at this prime (Table~\ref{tab:params}) leaving
+    some slower-saturating blocks not fully captured within the sampled window.
 
   \subsection{Inter-block variance and condition (E2)}
     \label{sec:variance}
@@ -114,18 +118,49 @@
       \end{tabular}
     \end{table}
 
-    All three primes yield $\hat{\delta}_{\mathrm{exact}} \in [4.40, 4.83]$, consistently
+    All three primes yield $\hat{\delta}_{\mathrm{exact}} \in [4.28, 4.80]$, consistently
     and significantly above the proxy value $3.39$.
-    The observed gap $\hat{\delta}_{\mathrm{exact}} - \hat{\delta}_{\mathrm{cap}} \approx 1.0$--$1.4$
-    is significantly larger than both the fitting uncertainty ($|\Delta\hat\delta| \leq 0.36$
-    for baseline window perturbations, Table~\ref{tab:sensitivity}) and the seed-to-seed
-    variability ($\sigma_{\mathrm{seed}} = 0.24$ at $q=29$), and is stable across all tested primes.
-    This rules out an interpretation of the gap as a numerical artefact of window choice
-    or block sampling.
-    The non-monotone $q$-dependence ($4.37 \to 4.28 \to 4.80$) is within the
-    inter-seed spread at $q=29$ ($\sigma_{\mathrm{seed}}=0.24$), leaving the
-    trend ambiguous at the present prime range.
-    The asymptotic value for $q\to\infty$ remains open (see Section~\ref{sec:discussion}).
+    The observed gap $\hat{\delta}_{\mathrm{exact}} - \hat{\delta}_{\mathrm{cap}} \approx 0.9$--$1.4$
+    exceeds both the fitting-window sensitivity ($|\Delta\hat\delta| \leq 0.35$
+    for baseline window perturbations excluding the ramp-up shell $n_0\to1$, which the
+    fitting procedure itself excludes for a different reason, Table~\ref{tab:sensitivity})
+    and the seed-to-seed
+    variability ($\sigma_{\mathrm{seed}} = 0.08$ at $q=29$, Table~\ref{tab:delta}): it is a
+    real, reproducible feature of the finite-$q$ data, not sampling or fitting noise.
+    Section~\ref{sec:comparison} identifies what this real gap actually reflects — the exact
+    and proxy constructions differ in ambient dimension and covering geometry, not in
+    sensitivity to the central coordinate $\gamma$ (Remark~\ref{rem:blind}) — and shows why
+    it should not be read as evidence of a $\gamma$-driven mechanism.
+
+    The non-monotone $q$-dependence ($4.37 \to 4.28 \to 4.80$) is likewise not sampling
+    noise: at $\sigma_{\mathrm{seed}}=0.08$, the observed spread of $0.52$ across the three
+    primes is far larger than the seed-to-seed variability at fixed $q$.
+    Section~\ref{sec:comparison} explains this without invoking noise: at finite $q\leq 61$
+    these are finite-size crossover slopes, not estimates of a single well-defined asymptotic
+    exponent, so no monotone trend with $q$ is expected in this range.
+
+    \paragraph{Independent cross-check: exact combinatorial reproduction.}
+      Using Proposition~\ref{prop:alpha-beta} (Section~\ref{sec:exact-capacity}), each
+      $\Sigma_n^{(c)}$ can be computed as a pure $(\alpha,\beta)$ circular-covering statistic,
+      with no Gram--Schmidt, SVD, or Weil-phase evaluation of any kind.
+      Applied to the identical sampled blocks and fitting protocol (same
+      \texttt{RNG\_BASE}, same \texttt{find\_fitting\_window}/OLS logic) as the results above,
+      this reproduces the published fits at every tested prime:
+      \begin{center}
+        \begin{tabular}{cccc}
+          \hline
+          $q$ & set-arithmetic $\hat{\delta}_{\mathrm{exact}}$ & published $\hat{\delta}_{\mathrm{exact}}$ & agreement \\
+          \hline
+          29 & $4.365\pm0.069$ & $4.37\pm0.08$ & window $[2,5]$, both \\
+          53 & $4.280$         & $4.28$        & window $[2,7]$, $R^2=0.9913$ vs.\ $0.991$ \\
+          61 & $4.799$         & $4.80$        & window $[2,7]$, $R^2=0.9926$ vs.\ $0.993$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+      This confirms the published fits are genuine, reproducible statistics of the exact
+      combinatorial process of Proposition~\ref{prop:alpha-beta}, not artefacts of the
+      Gram--Schmidt implementation, floating-point tolerance, or the BFS truncation scheme
+      (Table~\ref{tab:params}).
 
   \subsection{Collapse plot}
     \label{sec:collapse}
@@ -133,8 +168,11 @@
     Figure~\ref{fig:collapse} shows the collapse of normalised capacity
     $\tilde{\Sigma}_n^{(c)} = \Sigma_n^{(c)}/C_c$ vs rescaled depth $n/n^*$.
     The moderate alignment of the $q\in\{29,53,61\}$ curves around the master
-    law $(n/n^*)^{-4.5}$ confirms mean universality; the inter-block spread
-    is consistent with the E2 violation.
+    law $(n/n^*)^{-4.80}$ (the fitted exponent at the last prime, $q=61$) confirms mean
+    universality of the finite-$q$ fitted slopes; the inter-block spread is consistent with
+    the E2 violation. Section~\ref{sec:comparison} shows this finite-$q$ mean universality
+    is a different, weaker statement than the exact block-by-block universality of the
+    unfolded intrinsic exponent established there.
 
   \subsection{Sensitivity analysis}
     \label{sec:sensitivity}
@@ -164,4 +202,6 @@
     to the decay regime ($n_0 \geq 2$).
     The dominant sensitivity is to $n_0=1$ ($\Delta\hat\delta = -0.70$): at $n=1$
     the block is still in the ramp-up phase and the power-law regime has not begun.
-    The correct lower boundary $n_0=2$ is set by the condition $|B_n| \geq q$.
+    The lower boundary $n_0=2$ used here is the closed-form approximation
+    $\max(2,\lceil(q/4)^{1/4}\rceil)$ to the condition $|B_n|\geq q$
+    (Section~\ref{sec:fitting}), not its exact evaluation.

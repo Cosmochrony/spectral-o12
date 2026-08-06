@@ -1,120 +1,38 @@
 \section{Consequence for the Cascade Exponent $\beta^*$}
   \label{sec:beta}
 
-  \subsection{The structural relation $\delta = f(\beta)$: three levels}
+  \subsection{Which exponent is the valid input?}
 
-    The capacity exponent $\delta$ and the cascade exponent $\beta^*$ are linked by a
-    structural relation derived in the O3--O7
-    sub-programme~\cite{Beau2026a7,Beau2026a8,Beau2026a9,Beau2026a10,Beau2026a11}.
-    We use this relation at three distinct levels, which must not be conflated.
+    The O3--O7 sub-programme~\cite{Beau2026a7,Beau2026a8,Beau2026a9,Beau2026a10,Beau2026a11}
+    derives a structural relation $\beta^*=g(\delta)=1/(\delta+\tfrac12)$ between a capacity
+    decay exponent $\delta$ and the cascade exponent $\beta^*$, from the subdiffusive valence
+    growth law of O4~\cite{Beau2026a8}.
+    Using this relation requires identifying, for the present construction, which quantity
+    plays the role of $\delta$ in that derivation: the finite-$q$ fitted slope, the unfolded
+    intrinsic exponent, or a quantity from the $n\asymp q$ saturation regime.
 
-    \textbf{Level 1 (empirical).}
-    The present paper provides the measurement: $\hat{\delta}_{\mathrm{exact}}\approx X$
-    with uncertainty $\pm\sigma$ from Table~\ref{tab:delta}.
+    Section~\ref{sec:comparison} establishes that these are three structurally distinct
+    numbers for the exact block-wise construction of this paper: the finite-$q$ fitted slope
+    ($4.3$--$4.8$ at $q\in\{29,53,61\}$) is a crossover statistic dominated by the
+    finite-$q$ saturation-depth distribution; the unfolded intrinsic exponent is exactly
+    $\delta_{\mathrm{exact}}=3$, from Heisenberg shell growth alone; and the $n\asymp q$ regime
+    carries no exponent at all, only a compactly supported scaling function
+    (equation~\eqref{eq:scaling-limit}).
+    The O3--O7 derivation of $g(\delta)$ does not, on its own text, specify which of these
+    regimes its input $\delta$ is drawn from.
 
-    \textbf{Level 2 (structural).}
-    The O3--O7 papers establish the mapping $\delta\mapsto\beta^*$ from first principles
-    within the Cosmochrony framework, without fitting any free parameter to the lepton data.
-    We do not refit this relation here.
-    Rather, we propagate $\hat{\delta}_{\mathrm{exact}}$ through the pre-existing structural
-    relation as a change of input.
+  \subsection{No constraint is currently propagated}
 
-    \textbf{Level 3 (phenomenological).}
-    O3~\cite{Beau2026a7} established the window $\beta^*\in(0.09,0.13)$ as the range
-    compatible with the observed charged lepton mass ratios
-    $m_e:m_\mu:m_\tau\approx 1:207:3477$.
-    This window was derived independently of $\delta$; it serves here as a consistency
-    target.
+    Because the present paper cannot determine which of the three quantities above is the
+    valid input to $g(\delta)=1/(\delta+\tfrac12)$ without revisiting the O3--O7 derivation
+    itself — a question outside the scope of this paper — no numerical constraint on
+    $\beta^*$ is drawn here from either the finite-$q$ fitted slopes or the unfolded exponent
+    $\delta_{\mathrm{exact}}=3$.
+    Substituting either number into $g(\delta)$ without first settling which regime O3--O7's
+    derivation presupposes would silently re-introduce the same category error identified in
+    Section~\ref{sec:comparison}: reading a crossover statistic, or an asymptotic exponent
+    from a different regime, as if it were the structurally intended input.
 
-  \subsection{Propagating $\hat{\delta}_{\mathrm{exact}}$ through the O3--O7 relation}
-
-    The structural relation between the capacity exponent $\delta$ and the cascade
-    exponent $\beta^*$ is derived in O7~\cite{Beau2026a11} from the subdiffusive
-    valence growth law established in O4~\cite{Beau2026a8}.
-    In the notation of those papers, $\delta$ plays the role of the capacity decay
-    exponent $\alpha$ in $\Sigma_n \sim p(n)^{-\alpha}$, and the relation is
-    \begin{equation}
-      \beta^* = g(\delta) = \frac{1}{\delta + \tfrac{1}{2}},
-      \qquad\text{equivalently}\qquad
-      \delta = f(\beta^*) = \frac{1}{\beta^*} - \frac{1}{2}.
-      \label{eq:delta-beta-relation}
-    \end{equation}
-    This relation is not fitted to the lepton data in the present paper; it is used
-    here as a fixed structural output of O3--O7, with $\hat{\delta}_{\mathrm{exact}}$
-    as the only new input.
-    The O7 paper also records the consistency check: the window
-    $\alpha \in [7.4, 10.6]$ (the range anticipated from O10 at the proxy level)
-    corresponds precisely to $\beta^* \in (0.09, 0.13)$ via~\eqref{eq:delta-beta-relation},
-    confirming internal consistency of the O3--O7 chain.
-
-    Substituting $\delta = \hat{\delta}_{\mathrm{exact}} \pm \sigma$ into~\eqref{eq:delta-beta-relation}
-    yields the exact-projection constraint on $\beta^*$ reported in Table~\ref{tab:beta}.
-
-    \begin{table}[ht]
-      \centering
-      \caption{Constraint on $\beta^*$ derived from the exact-projection measurement
-      via the structural relation~\eqref{eq:delta-beta-relation}.
-      The phenomenological target window $\beta^*\in(0.09,0.13)$ is shown for comparison.
-      All $\beta^*$ values lie significantly above the target window: incompatible outcome.}
-      \label{tab:beta}
-      \begin{tabular}{ccccc}
-        \hline
-        $q$ & blocs & $\hat{\delta}_{\mathrm{exact}}$ & $\beta^* = 1/(\hat{\delta}+\tfrac{1}{2})$ &
-        Compatible with $(0.09,0.13)$? \\
-        \hline
-        29                    & 50 $\times$ 3\,seeds & $4.37 \pm 0.08$ & $0.203\text{--}0.207$ & No            \\
-        53                    & 20                   & $4.28$          & $0.209$               & No            \\
-        61                    & 15                   & $4.80$          & $0.189$               & No            \\
-        \hline
-        O11 proxy ($q{=}307$) & 500                  & $3.39$          & $0.257$               & No            \\
-        O7 anticipated        & ---                  & $[7.4,10.6]$    & $[0.09,0.13]$         & \emph{Target} \\
-        \hline
-      \end{tabular}
-    \end{table}
-
-  \subsection{Consistency check and interpretation of tension}
-
-    Table~\ref{tab:beta} shows a uniform \textbf{incompatible outcome}: all primes yield
-    $\beta^* \approx 0.19$--$0.21$, lying significantly above the phenomenological target
-    $\beta^* \in (0.09, 0.13)$ from O3~\cite{Beau2026a7}.
-    The gap is approximately a factor of 1.5--2 in $\beta^*$, corresponding to a gap
-    of approximately 4--5 units in $\delta$ relative to the anticipated range
-    $\alpha \in [7.4, 10.6]$ from O7.
-    We report this incompatibility without adjustment.
-
-    There are three structurally distinct sources of tension.
-
-    \textbf{Source 1: insufficient prime range.}
-    The primes tested ($q \leq 61$) are far below the asymptotic regime
-    identified in O11 ($q \approx 211$--$307$).
-    The exact-block fitting window is 4--7 data points at $q \leq 61$,
-    compared to 22 points in O11 at $q = 307$.
-    It is plausible that $\hat{\delta}_{\mathrm{exact}}$ continues to grow as $q \to \infty$,
-    reaching the range $[7.4, 10.6]$ at $q \geq 211$.
-    The $q$-dependence observed in the proxy series (where $\hat{\delta}_{\mathrm{cap}}$
-    decreased from 5.78 at $q=101$ to 3.39 at $q=307$) shows that large prime corrections
-    can be substantial; the exact series may exhibit a different but comparably large drift.
-    This interpretation makes O12-O1 (extension to $q \geq 101$) the most important
-    open computation in the programme.
-
-    \textbf{Source 2: structural relation requiring revision.}
-    The relation $\beta^* = 1/(\delta + \frac{1}{2})$ was derived in O3--O7 using the
-    proxy-level dynamics as input at certain steps.
-    If the exact-block dynamics differ structurally from the proxy dynamics
-    (as the present paper establishes they do, via the $\gamma$-induced acceleration),
-    then the derivation of $f(\beta)$ may need to be revisited with the exact observable
-    as input.
-    This would leave~\eqref{eq:delta-beta-relation} as an approximation valid at the
-    proxy level, requiring a corrected relation $f_{\mathrm{exact}}(\beta)$ derived
-    from the metaplectic structure of $\rho_c$.
-
-    \textbf{Source 3: revision of the phenomenological window.}
-    A third possibility is that the predicted window $\beta^* \in (0.09, 0.13)$ itself
-    requires revision in light of additional physical inputs.
-    This is the least preferred interpretation in the absence of independent motivation.
-
-    The three sources are not mutually exclusive.
-    The programme currently cannot discriminate between them without large-$q$ data.
-    The incompatible outcome is therefore honest but not conclusive: it identifies a
-    quantitative tension in the Cosmochrony programme that the next computational step
-    (O12-O1, $q \geq 101$) is designed to resolve.
+    Re-auditing the O3--O7 relation against the regime classification of
+    Section~\ref{sec:three-regimes} is left as the required next step before any
+    $\beta^*$ constraint can be stated.
