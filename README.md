@@ -141,7 +141,7 @@ O12 preserves all previous structural results:
 - hierarchical amplification via **O3**
 - structural upper bound on $\beta$ from **O4**
 - admissible-frontier saturation from **O5**
-- fixed finite-dimensional no-go from **O6**
+- the Steinberg-matrix span of dimension $q^2$ and its saturation within a few BFS radii, from **O6**
 - capacity formulation and state law from **O7**
 - growing fingerprint and geometric obstruction from **O8**
 - polynomial-growth resolution from **O9**
@@ -162,7 +162,7 @@ O12 advances the structural chain as follows:
 5. O3 → amplification via valence growth
 6. O4 → structural upper bound on $\beta$
 7. O5 → admissible-frontier saturation
-8. O6 → fixed finite-dimensional no-go
+8. O6 → Steinberg-matrix span of dimension $q^2$, saturating within the graph diameter
 9. O7 → projective capacity formulation
 10. O8 → growing fingerprint + geometric obstruction
 11. O9 → polynomial-growth geometry
@@ -234,7 +234,7 @@ The remaining tasks are:
 
 This framework is now:
 
-- free of algebraic obstruction (**O6**)
+- beyond the saturating fixed fingerprints of **O5–O6**
 - free of geometric obstruction (**O8 → O9**)
 - free of representation obstruction at the proxy level (**O10 → O11**)
 - extended to the exact Weil representation (**O12**)
